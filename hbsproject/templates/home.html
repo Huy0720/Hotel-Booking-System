@@ -7,6 +7,12 @@
     <title>Home</title>
 </head>
 <body>
-    <h1>Welcome to our Website!</h1>
+    <h1>Hotel Booking System</h1>
+    <h3>Welcome to our website!</h3>
+    <form action="" method="POST">
+
+        {% csrf_token %} {{ form.as_p }}
+        <button type="search">Search</button>
+    </form>
 </body>
 </html>

@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class SearchCountry(models.Model):
-    countryname = models.CharField(max_length=250)
+#class SearchCountry(models.Model):
+    #countryname = models.CharField(max_length=250)
 
 class SearchDestination(models.Model):
     country = models.CharField(max_length=250)

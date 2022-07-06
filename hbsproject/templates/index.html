@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>HomePage</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/sticky-nav.css">
+    <style data-tag="reset-style-sheet">
+        html {
+            line-height: 1.15;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+        }
+
+        div {
+            box-sizing: border-box;
+            border-width: 1 !important;
+            border-style: solid;
+        }
+
+        p,
+        li,
+        ul,
+        pre,
+        div,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+            padding: 0;
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
+        }
+
+        button,
+        select {
+            text-transform: none;
+        }
+
+        button,
+        [type="button"],
+        [type="reset"],
+        [type="submit"] {
+            -webkit-appearance: button;
+        }
+
+        button::-moz-focus-inner,
+        [type="button"]::-moz-focus-inner,
+        [type="reset"]::-moz-focus-inner,
+        [type="submit"]::-moz-focus-inner {
+            border-style: none;
+            padding: 0;
+        }
+
+        button:-moz-focus,
+        [type="button"]:-moz-focus,
+        [type="reset"]:-moz-focus,
+        [type="submit"]:-moz-focus {
+            outline: 1px dotted ButtonText;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+        input {
+            padding: 2px 4px;
+        }
+
+        img {
+            display: block;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+    </style>
+    <style data-tag="default-style-sheet">
+        html {
+            font-family: Poppins;
+            font-size: 16px;
+        }
+
+        body {
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: 1.55;
+            color: var(--dl-color-gray-black);
+            background-color: var(--dl-color-gray-white);
+
+        }
+    </style>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        data-tag="font" />
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/pickmeup.min.js"></script><!-- 日历 -->
+    <link rel="stylesheet" type="text/css" href="../css/pickmeup.css"><!-- 日历 -->
+    <script type="text/javascript" src="../js/handleCounter.js"></script><!-- 增加数字功能 -->
+    <link rel="stylesheet" type="text/css" href="../css/handle-counter.min.css"><!-- 增加数字外观 -->
+    <link rel="stylesheet" type="text/css" href="../css/main.css"><!-- 整体结构 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"><!-- 一些字体 -->
+    <script type="text/javascript" src="../js/demo.js"></script><!-- 整体结构 -->
+
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container">
+            <h1 class="logo"><a href="#">Ascenda Loyalty Hotel Booking</a></h1>
+            <ul>
+                <li><a href="#" class="current">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="bookHistory.html">Book History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div>
+        <link href="../css/landing-page.css" rel="stylesheet" />
+        <div class="landing-page-container">
+            <div class="landing-page-top-container">
+                <div class="landing-page-hero">
+                    <div class="landing-page-content-container">
+                        <h1 class="heading landing-page-text10">Here</h1>
+                        <h1 class="heading landing-page-text10">Book anywhere</h1>
+                        <h2 class="subheading landing-page-subheading">
+                            hotel for your personal travel
+                        </h2>
+                        <span class="landing-page-text11">
+                            <span>Each Hotel is hand-picked,</span>
+                            <br />
+                            <span>personally visited and cannot be found elsewhere.</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="tm-main">
+                <p>Booking</p>
+            </div>
+            <div class="tm-booking">
+                <form>
+                    <div class="tm-form1">
+                        <input type="text" name="name" placeholder="Name">
+                        <input type="email" name="email" placeholder="E-mail">
+                        <label for="rooms" id="inlinelable">Rooms</label>
+                        <select name="Rooms" id="rooms">
+                            <option value="luxurys">Luxury Suite</option>
+                            <option value="deluxs">Delux Suite</option>
+                            <option value="premiers">Premier Suite</option>
+                            <option value="Luxuryr">Luxury Room</option>
+                            <option value="deluxs">Delux Room</option>
+                            <option value="premierr">Premier Room</option>
+                        </select>
+
+
+
+
+
+
+                        <div class="tm-num1" id="handleCounter1">
+                            <label for="number1">Number of Rooms</label><br />
+                            <button type="button" class="counter-minus btn btn-primary">- </button>
+                            <input type="text" name="number1" id="number1" value="1">
+                            <button type="button" class="counter-plus btn btn-primary">+ </button>
+                        </div>
+                        <div class="tm-num2" id="handleCounter2">
+                            <label for="number2">Number of Guests</label><br />
+                            <button type="button" class="counter-minus btn btn-primary">-</button>
+                            <input type="text" name="number2" id="number2" value="1">
+                            <button type="button" class="counter-plus btn btn-primary">+</button>
+                        </div>
+                    </div>
+
+                    <div class="vertical-line"> </div>
+
+                    <div class="tm-form2">
+                        <div class="tm-cl">
+                            <label for="date1" class="arrival">Visiting Dates from Arrival to Departure</label>
+
+                            <input type="text" name="date1" class="range" readonly="readonly">
+
+
+                            <input type="submit" id="sub" value="Proceed">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d144307.84416915863!2d103.77665436338572!3d1.3499666076124137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1767b42b8ec9%3A0x400f7acaedaa420!2sSingapore!5e0!3m2!1sen!2ssg!4v1656903566371!5m2!1sen!2ssg"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+
+            <div id="main-section" class="landing-page-main">
+                <h1>Most famous places</h1>
+                <span class="landing-page-text16">Recommended</span>
+                <div class="landing-page-cards-container">
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/London.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>London</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/Rome.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>Rome</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/Singapore.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>Singapore</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/Paris.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>Paris</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/Shanghai.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>Shanghai</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="place-card-container">
+                        <img alt="image" src="../src/home/Tokyo.jpg" class="place-card-image" />
+                        <div class="place-card-container1">
+                            <span class="place-card-text"><span>Tokyo</span></span>
+                            <span class="place-card-text1">
+                                <span>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                </span>
+                            </span>
+                            <div class="outline-button-container">
+                                <button class="outline-button-button button">
+                                    <span>Discover place</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <footer class="tm-footer">
+            <div class="tm-us">
+                <p class="bold">About Us</p>
+                <p>This is a DEMO of a Hotel-Reservation-System.</p>
+            </div>
+
+            <div class="tm-address">
+                <p class="bold">Address</p>
+                <p>Singapore University of Technology and Design
+                    Phone : Not-Gonna-Tell-Ya
+                    Email : Nan</p>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

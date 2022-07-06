@@ -14,5 +14,10 @@
         {% csrf_token %} {{ form.as_p }}
         <button type="search">Search</button>
     </form>
+    {% if messages %}
+    {% for x in messages %}
+    <h3>{{x}}</h3>
+    {% endfor %}
+    {% endif %}
 </body>
 </html>

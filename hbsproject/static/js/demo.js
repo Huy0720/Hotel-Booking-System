@@ -59,20 +59,6 @@ function initMap() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // image slider main
 $(document).ready(function(){
     

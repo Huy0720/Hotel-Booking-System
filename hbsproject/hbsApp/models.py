@@ -7,6 +7,7 @@ from django.db import models
 class SearchDestination(models.Model):
     country = models.CharField(max_length=250)
     people = models.PositiveIntegerField()
+    #rooms = models.PositiveIntegerField()
     checkin_date = models.DateField()
     checkout_date = models.DateField()
     

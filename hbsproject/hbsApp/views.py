@@ -16,5 +16,17 @@ class HomeView(CreateView):
         return super().form_valid(form) 
 
 def index(request):
-    template = "templates/index.html"
+    template = "index.html"
     return render(request, template)
+
+def login(request):
+    template = "login.html"
+    return render(request,template)
+
+def register(request):
+    template = "register.html"
+    return render(request,template)
+
+def bookHistory(request):
+    template = "bookHistory.html"
+    return render(request,template)

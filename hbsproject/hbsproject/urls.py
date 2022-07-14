@@ -17,10 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from hbsApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("hbsApp.urls")),
+    path('user/index',views.index),
+    path('user/login',views.login),
+    path('user/register',views.register),
+    path('user/bookHistory',views.bookHistory)
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

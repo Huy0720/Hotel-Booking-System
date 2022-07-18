@@ -87,7 +87,9 @@
     min-height: 100vh;
     align-items: center;
     flex-direction: column;
+    /* background: #ec0c0c; */
     background: #7c7979;
+    /* padding: 0%; */
 }
 
 .landing-page-top-container {

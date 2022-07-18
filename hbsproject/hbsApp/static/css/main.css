@@ -353,7 +353,8 @@
 
 .tm-main p {
     display: table;
-    max-width: 30%;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     font-size: 4vw;
     padding: 2%;
@@ -509,6 +510,10 @@
 .tm-booking {
     background: #222121;
     position: relative;
+    width: 100%;
+    height: 900px;
+    padding: 0%;
+    margin: 0%;
 }
 
 .tm-form1,
@@ -567,6 +572,7 @@ textarea {
 }
 
 input::-webkit-input-placeholder {
+
     color: #f17c94;
 }
 
@@ -624,9 +630,10 @@ textarea {
 .tm-num2 {
     display: inline-block;
 
-    max-width: 39%;
-    width: 39%;
-    margin: 5%;
+    max-width: 60%;
+    width: 60%;
+    margin-top: 10%;
+    /* margin: 5%; */
 }
 
 #number1,

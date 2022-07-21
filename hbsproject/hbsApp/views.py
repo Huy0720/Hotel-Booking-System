@@ -1,7 +1,7 @@
 from asyncio.constants import DEBUG_STACK_DEPTH
 from re import template
 from warnings import catch_warnings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 from .forms import *
 from django.urls import reverse_lazy
@@ -12,6 +12,9 @@ import json
 from re import template
 import requests
 from django.views import generic
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import authenticate,login,logout
 
 class HomeView(CreateView):
     template_name = 'home.html'
@@ -28,13 +31,42 @@ def index(request):
     return render(request, template)
 
 
-def login(request):
+def login_call(request):
     template = "login.html"
+    if request.method=='POST':
+        emailadd = request.POST["emailadd"]
+        passwd = request.POST["passwd"]
+        currUser = authenticate(username= emailadd,password= passwd)
+        print(passwd)
+        print(currUser)
+        if currUser != None:
+            login(request,currUser)
+            return redirect('./index')
+        else:
+            return redirect('./register')
     return render(request,template)
 
 def register(request):
     template = "register.html"
+
+    if request.method == "POST":
+        emailid = request.POST["email"]
+        password = request.POST["password"]
+        passwordrepeat = request.POST["passwordrepeat"]
+
+        if password == passwordrepeat:
+            newcustomer = User(username= emailid,email= emailid, password= passwordrepeat)
+            newcustomer.save()
+            profile = Profile(user = newcustomer)
+            profile.save()
+            return redirect('./index')
+        else:
+            return redirect('./register')
     return render(request,template)
+
+def logout_call(request):
+    logout(request)
+    return redirect('./login')
 
 def bookHistory(request):
     template = "bookHistory.html"

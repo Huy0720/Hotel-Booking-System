@@ -19,32 +19,34 @@
                     <li><a href="login">Login</a></li>
                     <li><a href="#" class="current">Register</a></li>
                     <li><a href="bookHistory">Book History</a></li>
+                    <li><a href="logout">Logout</a></li>
                 </ul>
             </div>
         </nav>
     </div>
     <div class="container1">
         <h1 class="text">Please Register</h1>
-        <form>
-
+        <form method="POST">
+            {% csrf_token %}
+            
             <div class="form-control">
-                <input type="text" required>
+                <input type="text" name="email" id="email" required>
                 <label>Set your Email</label>
             </div>
 
             <div class="form-control">
-                <input type="password" required>
+                <input type="password" name="password" id="password" required>
                 <label>Set your Password</label>
             </div>
 
             <div class="form-control">
-                <input type="password" required>
+                <input type="password" name="passwordrepeat" id="passwordrepeat" required>
                 <label>Confirm Password</label>
             </div>
 
             <button class="btn">Register</button>
 
-            <p class="text">Already have an account? <a href="login">Login</a> </p>
+            <p class="text">Already have an account? <a href="./login">Login</a> </p>
         </form>
     </div>
     <script src="../static/js/register.js"></script>

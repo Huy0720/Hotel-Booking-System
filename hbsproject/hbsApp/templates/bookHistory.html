@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/sticky-nav.css">
     <title>Document</title>
+    <link rel="stylesheet" href="../static/css/sticky-nav.css">
     <style>
         * {
             margin: 0;
@@ -14,33 +14,52 @@
         }
 
         .box {
+            display: flex;
+            align-items: center;
             width: relative;
             height: 300px;
             background-color: #353535;
+            vertical-align: middle;
         }
 
         .box img {
-            width: 100%;
-            height: 100%;
+            width: 300px;
+            height: 300px;
+            background: url('../static/src/No_images_available.jpg')
         }
 
         .box p {
             color: #ec3d68;
+            line-height: 40px;
+
         }
 
         .describe {
-            margin-left: 40%;
+            margin-left: 3%;
         }
 
-        .bookingDetails {
-            width: relative;
-            height: 300px;
-            background-color: aliceblue;
+        .warning {
+            margin-top: 10%;
+            font-size: 50px;
+            color: #ec3d68;
+        }
+
+        .tm-main p {
+
+            display: table;
+            width: 100%;
+            max-width: 100%;
+            margin-top: 5%;
+            margin-left: 35%;
+            font-size: 4vw;
+            padding: 2%;
+            color: rgb(255, 255, 255);
+            font-weight: 700;
         }
     </style>
 </head>
 
-<body>
+<body style="background-color: #353535;">
     <nav class="nav">
         <div class="container">
             <h1 class="logo"><a href="#">Ascenda Loyalty Hotel Booking</a></h1>
@@ -52,68 +71,18 @@
             </ul>
         </div>
     </nav>
-    <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <p class="describe">123</p>
-            </td>
-        </table>
+    <div class="tm-main">
+        <p>Book History</p>
     </div>
+    {% for hotel in hotel_list %}
     <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <div class="bookingDetails">
+        <img src={{hotel.image_url}}>
+        <p class="describe">Hotel name : {{hotel.name}} <br> Hotel address : {{hotel.address}} <br>Hotel rating :
+            {{hotel.rating}}
+        </p>
 
-                </div>
-            </td>
-        </table>
     </div>
-    <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <p class="describe">123</p>
-            </td>
-        </table>
-    </div>
-    <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <p class="describe">123</p>
-            </td>
-        </table>
-    </div>
-    <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <p class="describe">123</p>
-            </td>
-        </table>
-    </div>
-    <div class="box">
-        <table>
-            <td>
-                <img src="../static/src/rooms/delux.png" alt="">
-            </td>
-            <td>
-                <p class="describe">123</p>
-            </td>
-        </table>
-    </div>
+    {% endfor %}
 
 </body>
 

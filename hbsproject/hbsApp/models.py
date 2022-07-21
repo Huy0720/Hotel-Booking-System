@@ -10,4 +10,3 @@ class SearchDestination(models.Model):
     #rooms = models.PositiveIntegerField()
     checkin_date = models.DateField()
     checkout_date = models.DateField()
-    

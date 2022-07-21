@@ -133,7 +133,7 @@
 
 </head>
 
-<body>
+<body style="background-color: #211f17;">
     <nav class="nav">
         <div class="container">
             <h1 class="logo"><a href="#">Ascenda Loyalty Hotel Booking</a></h1>
@@ -169,7 +169,8 @@
                 <p>Booking</p>
             </div>
             <div class="tm-booking">
-                <form>
+                <form method="post" action="/user/HotelList">
+                    {% csrf_token %}
                     <div class="tm-form1">
                         <label for="number2">Destination</label>
                         <input type="text" style="width:80%;" name="destination" placeholder="Singapore">
@@ -204,18 +205,13 @@
                     <div class="tm-form2">
                         <div class="tm-cl">
                             <label for="date1" class="arrival">Visiting Dates from Arrival to Departure</label>
-
                             <input type="text" name="date1" class="range" style="width:80%;" readonly="readonly">
                             <input type="submit" id="sub" value="Search">
                         </div>
                     </div>
                 </form>
             </div>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d144307.84416915863!2d103.77665436338572!3d1.3499666076124137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1767b42b8ec9%3A0x400f7acaedaa420!2sSingapore!5e0!3m2!1sen!2ssg!4v1656903566371!5m2!1sen!2ssg"
-                width="1200" height="900" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+
 
 
             <div id="main-section" class="landing-page-main">

@@ -25,7 +25,7 @@ urlpatterns = [
     path("", include("hbsApp.urls")),
     path('user/index',views.index),
     path('user/login',views.login_call, name="login_call"),
-    path('user/register',views.register),
+    path('user/register',views.register, name="register"),
     path('user/bookHistory',views.bookHistory),
     path('user/HotelList', views.hotelList),
     path('user/logout',views.logout_call, name="logout_call"),

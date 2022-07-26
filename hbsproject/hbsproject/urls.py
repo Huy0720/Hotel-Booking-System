@@ -29,6 +29,7 @@ urlpatterns = [
     path('user/bookHistory',views.bookHistory),
     path('user/HotelList', views.hotelList),
     path('user/logout',views.logout_call, name="logout_call"),
+    path("user/destinations_filtered.json", views.json_view)
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

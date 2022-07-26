@@ -1,5 +1,6 @@
 from asyncio.constants import DEBUG_STACK_DEPTH
 from re import template
+from tkinter.messagebox import NO
 from warnings import catch_warnings
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
@@ -16,6 +17,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate,login,logout
 
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
+
 class HomeView(CreateView):
     template_name = 'home.html'
     form_class = SearchDestinationForm
@@ -24,7 +29,10 @@ class HomeView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form) 
 
-
+def json_view(request):
+    with open("../destinations_filtered.json",'r',encoding='UTF-8') as load_f:
+        j = json.load(load_f)
+    return JsonResponse(j, safe=False)
 
 def index(request):
     template = "index.html"  
@@ -139,3 +147,8 @@ def image_url(state):
         im_url = i['image_details']['prefix']+'0'+i['image_details']['suffix']
         i['image_url'] = im_url
     return state
+
+with open("../destinations_filtered.json",'r',encoding='UTF-8') as load_f:
+        j = json.load(load_f)
+        type_of_j =type(j)
+print(type_of_j)

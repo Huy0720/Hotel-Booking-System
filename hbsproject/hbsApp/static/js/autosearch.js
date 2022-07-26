@@ -17,11 +17,12 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
 
 
 var data = [];
-$.getJSON('http://127.0.0.1:5500/destinations_filtered.json', function(result) {
+$.getJSON('destinations_filtered.json', function(result) {
 	$.each(result, function(index, val) {
 		data.push(val.term)
 	});
 });
+
 
 
 $("#destination").autocomplete({

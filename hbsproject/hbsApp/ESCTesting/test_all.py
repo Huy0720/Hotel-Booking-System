@@ -104,7 +104,7 @@ class TestRegisterPositive():
     self.driver.get("http://127.0.0.1:8000/user/register")
     self.driver.set_window_size(1434, 699)
     self.driver.find_element(By.ID, "email").click()
-    self.driver.find_element(By.ID, "email").send_keys("109@gmail.com")
+    self.driver.find_element(By.ID, "email").send_keys("110@gmail.com")
     self.driver.find_element(By.ID, "password").click()
     self.driver.find_element(By.ID, "password").send_keys("123456")
     self.driver.find_element(By.ID, "passwordrepeat").click()

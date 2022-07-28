@@ -1,4 +1,5 @@
 from asyncio.constants import DEBUG_STACK_DEPTH
+import imp
 from re import template
 from tkinter.messagebox import NO
 from warnings import catch_warnings
@@ -19,7 +20,7 @@ from django.contrib.auth import authenticate,login,logout
 
 from django.http import JsonResponse
 from django.template.loader import render_to_string
-
+import time
 
 class HomeView(CreateView):
     template_name = 'home.html'
@@ -83,25 +84,36 @@ def bookHistory(request):
 
 def hotelList(request):
     template = "HotelList.html"
-    dest = request.POST 
+    dest = request.POST
     print(dest)
     print(dest['destination'])
     a = dest['destination']
+    b = dest['number2']
+    c = dest['date1']
     x = read_json()
     y = find_des_id(a,x)
+    hotel_l = list()
     if y != False:
-        z = concate_url(y)
-        h = read_json_2(z)
-        f = image_url(h)
+        api_1 = concate_url_1(y,b,c)
+        api_1_return = read_json_1(api_1)
+        for i in api_1_return['hotels']:
+            try:
+                api_2 = concate_url_2(i['id'])
+                print(api_2)
+                api_2_return = read_json_2(api_2)
+                hotel = image_url(api_2_return)
+                hotel.update(i)
+                hotel_l.append(hotel)
+            except:
+                time.sleep(0.005)
+                continue
     else:
-        f = []
-    # image_1 = f['image_details']['prefix']+'0'+f['image_details']['suffix']
-    # hotelName_1=f['name']
-    # hotelAddress_1 = f['address']
-    # hotelRating_1 = f['rating']
+        hotel_l = []
+    return render(request,template,{'hotel_list':hotel_l})
 
-    return render(request,template,{'hotel_list':f})
 
+def hotel_list_2(request):
+    return
 
 
 def read_json():
@@ -118,37 +130,54 @@ def find_des_id(des, des_l):
             return False
     return False
 
-def concate_url(des_id):
-    url = 'https://hotelapi.loyalty.dev/api/hotels?destination_id='+des_id
+def concate_url_1(des_id,num_guests,date):
+    x = date
+    print(x)
+    l = list()
+    l.append(x.split(' ')[0])
+    l.append(x.split(' ')[1])
+    l.append(x.split(' ')[8])
+    l.append(x.split(' ')[9])
+
+    date_dict = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05',
+                'Jun': '06', 'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10',
+                'Nov': '10', 'Dec': '11'}
+    start_month = l[1].split("-")
+    start_date = '20'+start_month[1]+'-'+date_dict[start_month[0]]+'-'+l[0]
+    end_month = l[3].split("-")
+    end_date = '20'+end_month[1]+'-'+date_dict[end_month[0]]+'-'+l[2]
+    url = 'https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
     return url
+
+
+def concate_url_2(hotel_id):
+    url = 'https://hotelapi.loyalty.dev/api/hotels/'+hotel_id
+    return url
+
+
+def read_json_1(url):
+    load_f=requests.get(url).text
+    time.sleep(2)
+    load_f=requests.get(url).text
+    state = json.loads(load_f)
+    return state
 
 def read_json_2(url):
     load_f=requests.get(url).text
     state = json.loads(load_f)
-    # print(state[3])
-    # print(state[3]['id'])
-    # print(state[3]['name'])
-    # print(state[3]['address'])
-    # print(state[3]['rating'])
-    # print(state[3]['image_details']['prefix'])
-    # print(state[3]['image_details']['count'])
-    # print(state[3]['image_details']['suffix'])
-
-    # print(state[3]['image_details']['suffix'])
     return state
 
-# x = read_json()
-# y = find_des_id('London, England, UK (LGW-Gatwick)',x)
-# z = concate_url(y)
-# read_json_2(z)
 
-def image_url(state):
-    for i in state:
-        im_url = i['image_details']['prefix']+'0'+i['image_details']['suffix']
-        i['image_url'] = im_url
-    return state
+def image_url(i):
+    im_url = i['image_details']['prefix']+'0'+i['image_details']['suffix']
+    i['image_url'] = im_url
+    return i
 
 with open("../destinations_filtered.json",'r',encoding='UTF-8') as load_f:
         j = json.load(load_f)
         type_of_j =type(j)
 print(type_of_j)
+
+# x = concate_url_1('YD2Z','2','2022-07-28','2022-07-29')
+# y = read_json_2(x)
+# print(y['hotels'][0])

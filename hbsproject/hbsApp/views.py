@@ -57,7 +57,6 @@ def login_call(request):
 
 def register(request):
     template = "register.html"
-
     if request.method == "POST":
         emailid = request.POST["email"]
         password = request.POST["password"]
@@ -96,6 +95,8 @@ def hotelList(request):
     if y != False:
         api_1 = concate_url_1(y,b,c)
         api_1_return = read_json_1(api_1)
+        if len(api_1_return['hotels'])>5:
+            api_1_return['hotels'] = api_1_return['hotels'][0:5]
         for i in api_1_return['hotels']:
             try:
                 api_2 = concate_url_2(i['id'])
@@ -112,8 +113,18 @@ def hotelList(request):
     return render(request,template,{'hotel_list':hotel_l})
 
 
-def hotel_list_2(request):
-    return
+def hotelDetail(request):
+    template = "HotelDetail.html"
+    dest = request.POST
+    print(dest)
+    a = dest['hotel_info']
+    api_2 = concate_url_2(a)
+    print(api_2)
+    api_2_return = read_json_2(api_2)
+    api_2_return = image_url(api_2_return)
+    api_2_return = image_url_more(api_2_return)
+    print(api_2_return)
+    return render(request,template,{'hotel_detail':api_2_return})
 
 
 def read_json():
@@ -172,6 +183,18 @@ def image_url(i):
     im_url = i['image_details']['prefix']+'0'+i['image_details']['suffix']
     i['image_url'] = im_url
     return i
+
+def image_url_more(i):
+    im_url_1 = i['image_details']['prefix']+'1'+i['image_details']['suffix']
+    i['image_url_1'] = im_url_1
+    im_url_2 = i['image_details']['prefix']+'2'+i['image_details']['suffix']
+    i['image_url_2'] = im_url_2
+    im_url_3 = i['image_details']['prefix']+'3'+i['image_details']['suffix']
+    i['image_url_3'] = im_url_3
+    im_url_4 = i['image_details']['prefix']+'4'+i['image_details']['suffix']
+    i['image_url_4'] = im_url_4
+    return i
+
 
 with open("../destinations_filtered.json",'r',encoding='UTF-8') as load_f:
         j = json.load(load_f)

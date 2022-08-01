@@ -72,21 +72,24 @@
     </div>
     {% if hotel_list %}
     {% for hotel in hotel_list %}
-    <div class="box">
-        <img src={{hotel.image_url}}>
-        <div style="margin-left: 20px; width:500px">
-            <p class="describe">Hotel name : {{hotel.name}} <br> Hotel address :
-                {{hotel.address}}
-                <br>Hotel rating :
-                {{hotel.rating}}
-            </p>
-        </div>
+    <form method="post" action="/user/HotelDetail">
+        {% csrf_token %}
+        <div class="box">
+            <img src={{hotel.image_url}} name="image_url">
+            <div style="margin-left: 20px; width:500px">
+                <p class="describe" type="text">Hotel name : {{hotel.name}}</p> <br>
+                <p class="describe" type="text">Hotel address :{{hotel.address}}</p> <br>
+                <p class="describe" type="text">Hotel rating :{{hotel.rating}}</p> <br>
+                <input type="hidden" name="hotel_info" id="hotel_info" value="{{hotel.id}}">
+            </div>
 
-        <button type="button"
-            style=" margin-left: 400px; margin-bottom: 0px; height: 30px; width: 170px; font-size: 20px;">Look
-            For
-            Detail</button>
-    </div>
+            <button type="submit"
+                style=" margin-left: 400px; margin-bottom: 0px; height: 30px; width: 170px; font-size: 20px;">Look
+                For
+                Detail</button>
+
+        </div>
+    </form>
     {% endfor %}
     {% else %}
     <p class="warning">There are no hotels in the destination</p>

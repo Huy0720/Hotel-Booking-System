@@ -24,7 +24,8 @@ body {
     left: 0;
     right: 0;
     transition: all 0.3s ease-in-out;
-    z-index: 9999
+    z-index: 9999;
+    height: 80px;
 }
 
 .nav .container {
@@ -60,6 +61,7 @@ body {
 
 .nav.active .container {
     padding: 10px 0;
+
 }
 
 .nav a.current,

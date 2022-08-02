@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("hbsApp.urls")),
     path('user/index',views.index),
-    path('user/login',views.login_call, name="login_call"),
+    path('user/login',views.login, name="login"),
     path('user/register',views.register, name="register"),
     path('user/bookHistory',views.bookHistory),
     path('user/HotelList', views.hotelList),

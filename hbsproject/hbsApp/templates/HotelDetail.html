@@ -114,6 +114,46 @@
       background-color: #353535;
 
     }
+
+    .button {
+      display: inline-block;
+      border-radius: 4px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 28px;
+      padding: 20px;
+      width: 200px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+    }
+
+    .button span:after {
+      content: '»';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button:hover span {
+      padding-right: 25px;
+    }
+
+    .button:hover span:after {
+      opacity: 1;
+      right: 0;
+    }
   </style>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -216,23 +256,39 @@
             <span>
               {{ hotel_detail.description}}
             </span>
-            <!-- <span class="landing-page-text51">Amenities</span>
-            <ul class="landing-page-ul2 list">
-              {% for k,v in hotel_detail.amenities.items %}
-              <li class="list-item">
-                <span class="landing-page-text52">
-                  <span>{{k}}</span>
-                  <span class="landing-page-text54">{{v}}</span>
-                </span>
-              </li>
-              {% endfor %}
-            </ul> -->
           </div>
+        </div>
+        <div class="landing-page-container4">
+          <link rel="stylesheet" href="../static/css/placeholder.css" />
+
+          {% for i in room_detail.rooms %}
+          <form method="post" action="/user/index">
+            {% csrf_token %}
+
+            <div class="card">
+              <div class="card-header" id="header"><img src="{{i.images.0.url}}" alt="" /></div>
+              <div class="card-content">
+                <h3 class="card-title" id="title">
+                  {{i.price_type}}
+                </h3>
+                <p class="card-excerpt" id="excerpt">
+                  {{i.description}}
+                </p>
+                <br>
+                <p class="card-excerpt" id="excerpt">
+                  {{i.description}}
+                </p>
+                <input type="hidden" name="room_type" value="{{i.price_type}}">
+                <input type="hidden" name="hotel_name" value="{{hotel_detail.name}}">
+                <button type="submit" class="button"><span>Book it</span></button>
+              </div>
+            </div>
+          </form>
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
-  <script src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
 </body>
 
 </html>

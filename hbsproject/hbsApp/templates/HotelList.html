@@ -81,13 +81,15 @@
                 <p class="describe" type="text">Hotel address :{{hotel.address}}</p> <br>
                 <p class="describe" type="text">Hotel rating :{{hotel.rating}}</p> <br>
                 <input type="hidden" name="hotel_info" id="hotel_info" value="{{hotel.id}}">
+                <input type="hidden" name="hotel_dest" id="hotel_info" value="{{book_dest}}">
+                <input type="hidden" name="hotel_date" id="hotel_info" value="{{book_date}}">
+                <input type="hidden" name="hotel_guest" id="hotel_info" value="{{num_of_guest}}">
             </div>
 
             <button type="submit"
                 style=" margin-left: 400px; margin-bottom: 0px; height: 30px; width: 170px; font-size: 20px;">Look
                 For
                 Detail</button>
-
         </div>
     </form>
     {% endfor %}

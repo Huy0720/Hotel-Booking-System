@@ -110,7 +110,7 @@ def hotelList(request):
                 continue
     else:
         hotel_l = []
-    return render(request,template,{'hotel_list':hotel_l})
+    return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b})
 
 
 def hotelDetail(request):
@@ -118,13 +118,19 @@ def hotelDetail(request):
     dest = request.POST
     print(dest)
     a = dest['hotel_info']
+    b = dest['hotel_dest']
+    c = dest['hotel_date']
+    d = dest['hotel_guest']
     api_2 = concate_url_2(a)
     print(api_2)
     api_2_return = read_json_2(api_2)
     api_2_return = image_url(api_2_return)
     api_2_return = image_url_more(api_2_return)
-    print(api_2_return)
-    return render(request,template,{'hotel_detail':api_2_return})
+
+    api_3 = concate_url_3(b,d,c,a)
+    print(api_3)
+    api_3_return = read_json_1(api_3)
+    return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return})
 
 
 def read_json():
@@ -163,6 +169,25 @@ def concate_url_1(des_id,num_guests,date):
 
 def concate_url_2(hotel_id):
     url = 'https://hotelapi.loyalty.dev/api/hotels/'+hotel_id
+    return url
+
+def concate_url_3(des_id,num_guests,date,hotel_id):
+    x = date
+    print(x)
+    l = list()
+    l.append(x.split(' ')[0])
+    l.append(x.split(' ')[1])
+    l.append(x.split(' ')[8])
+    l.append(x.split(' ')[9])
+
+    date_dict = {'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04', 'May': '05',
+                'Jun': '06', 'Jul': '07', 'Aug': '08', 'Sep': '09', 'Oct': '10',
+                'Nov': '10', 'Dec': '11'}
+    start_month = l[1].split("-")
+    start_date = '20'+start_month[1]+'-'+date_dict[start_month[0]]+'-'+l[0]
+    end_month = l[3].split("-")
+    end_date = '20'+end_month[1]+'-'+date_dict[end_month[0]]+'-'+l[2]
+    url = 'https://hotelapi.loyalty.dev/api/hotels/'+hotel_id+'/price?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
     return url
 
 

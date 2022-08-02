@@ -27,6 +27,7 @@ urlpatterns = [
     path('user/register',views.register, name="register"),
     path('user/bookHistory',views.bookHistory),
     path('user/HotelList', views.hotelList),
+    path('user/HotelDetail', views.hotelDetail),
     path('user/logout',views.logout_call, name="logout_call"),
     path("user/destinations_filtered.json", views.json_view)
 ]

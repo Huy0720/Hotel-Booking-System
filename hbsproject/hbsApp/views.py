@@ -40,7 +40,7 @@ def index(request):
     return render(request, template)
 
 
-def login_call(request):
+def login(request):
     template = "login.html"
     if request.method=='POST':
         emailadd = request.POST["emailadd"]

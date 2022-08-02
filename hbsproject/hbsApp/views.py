@@ -89,11 +89,12 @@ def hotelList(request):
     a = dest['destination']
     b = dest['number2']
     c = dest['date1']
+    d = dest['number1']
     x = read_json()
     y = find_des_id(a,x)
     hotel_l = list()
     if y != False:
-        api_1 = concate_url_1(y,b,c)
+        api_1 = concate_url_1(y,b,c,d)
         api_1_return = read_json_1(api_1)
         if len(api_1_return['hotels'])>5:
             api_1_return['hotels'] = api_1_return['hotels'][0:5]
@@ -147,7 +148,7 @@ def find_des_id(des, des_l):
             return False
     return False
 
-def concate_url_1(des_id,num_guests,date):
+def concate_url_1(des_id,num_guests,date,room_num):
     x = date
     print(x)
     l = list()
@@ -163,7 +164,13 @@ def concate_url_1(des_id,num_guests,date):
     start_date = '20'+start_month[1]+'-'+date_dict[start_month[0]]+'-'+l[0]
     end_month = l[3].split("-")
     end_date = '20'+end_month[1]+'-'+date_dict[end_month[0]]+'-'+l[2]
-    url = 'https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
+    if room_num == 1:
+        url = 'https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
+    else:
+        y = num_guests + '|'
+        num_guests = y*int(room_num)
+        print( num_guests)
+        url = 'https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
     return url
 
 

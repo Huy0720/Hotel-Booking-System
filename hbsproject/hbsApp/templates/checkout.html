@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Signup Form</title>
+          
+          
+<link rel="stylesheet" 
+href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+integrity=
+"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+crossorigin="anonymous">    
+          
+<link rel="stylesheet" type="text/css" href="../static/css/checkout.css">
+          
+</head>
+<body>
+      
+    <br>
+    <br>
+    <br>
+    <div class="container" >
+        <div class="row">
+        <div class="col-md-3">
+                      
+        </div>
+                  
+        <div class="col-md-6 main">
+                      
+            <form method="post" action="/user/bookingsuccessful">
+
+                <h3 align="right"> Hotel: {{hotel_name}} </h3>
+                <h3 align="right"> Room Type: {{room_type}} </h3>    <br>
+                      
+            <h2> Checkout form </h2>
+
+            <select class="box" name="salutation" id="salutation" required>
+                <option value="" disabled selected hidden>Title</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Mrs.">Mrs.</option>
+            </select>
+                       
+            <input class="box" type="text" name="fname" id="fname" 
+            placeholder="First Name"  required /><br>
+
+            <input class="box" type="text" name="lname" id="lname" 
+            placeholder="Last Name"  required /><br>
+           
+                              
+            <input class="box" type="email" name="email" id="email" 
+            placeholder="E-Mail " required /><br>
+                              
+                              
+            <input class="box" type="text" name="phone" id="phone"  
+            placeholder="Phone Number " required/><br>
+
+            <input class="box" type="text" name="message" id="message" 
+            placeholder="Special requests to hotels"  /><br><br>
+
+            <hr style="border: solid">
+
+            <h2> Payment Information </h2> <br>
+            
+                       
+            <input class="box" type="text" name="card_number" id="card_number" 
+            placeholder="Card Number"  required /><br>
+
+            <input class="box" type="text" name="card_name" id="card_name" 
+            placeholder="Name on Card"  required /><br>
+
+
+            <select class="box" name="exp_month" id="exp_month" required>
+                <option value="" disabled selected hidden>Expiry Month</option>
+            </select>
+
+            <select class="box" name="exp_year" id="exp_year" required>
+                <option value="" disabled selected hidden>Expiry Year</option>
+            </select>
+           
+                              
+            <input class="box" type="text" name="CVV" id="CVV" 
+            placeholder="CVV/CVC" required /><br> 
+            
+            <input class="box" type="text" name="billing_address" id="billing_address" 
+            placeholder="Billing Address"  required /><br><br>
+
+            <input type="submit" id="submitDetails"  
+            name="submitDetails" value="Submit" /><br>
+
+                      
+            </form>
+                      
+
+<script>
+    var months = [
+    'January','Ferbruary','March','April','May','June','July','August','September','October','November','December'
+];
+    var current_year = new Date().getFullYear();
+    var max_year = current_year + 20;
+    var years = Array(max_year - current_year + 1).fill().map((_, idx) => current_year + idx)
+
+    const selectBox1 = document.getElementById('exp_month');
+    const selectBox2 = document.getElementById('exp_year');
+
+    for(index in months) {
+        selectBox1.options[selectBox1.options.length] = new Option(months[index], months[index]);
+    }
+
+    for(index in years) {
+        selectBox2.options[selectBox2.options.length] = new Option(years[index], years[index]);
+    }
+</script>
+
+
+</body>
+</html>    

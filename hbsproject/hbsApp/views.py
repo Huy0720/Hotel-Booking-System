@@ -22,6 +22,9 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 import time
 
+from pymongo import MongoClient
+import pymongo
+
 class HomeView(CreateView):
     template_name = 'home.html'
     form_class = SearchDestinationForm
@@ -150,6 +153,34 @@ def hotelDetail(request):
     api_3_return = read_json_1(api_3)
     return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return})
 
+def check_out(request):
+    template = "checkout.html"
+    dest = request.POST
+    room_type = dest['room_type']
+    hotel_name = dest['hotel_name']
+    return render(request, template,{'room_type':room_type, "hotel_name":hotel_name})
+
+def booking_successful(request):
+    template = "SuccessfulBooking.html"
+    dest = request.POST
+    info = {
+            "Salutation": dest["salutation"] + ' '+ dest["fname"] + ' ' + dest["lname"],
+            "Email": dest["email"],
+            "Phone": dest["phone"],
+            "Special Request": dest["message"],
+            "Credit Card Number": dest["card_number"],
+            "Expiry": dest["exp_month"] + ' ' + dest["exp_year"],
+            "CVV/CVC": dest["CVV"],
+            "Bliing Address": dest["billing_address"]
+            }
+
+    CONNECTION_STRING = "mongodb+srv://huy:sutd@cluster0.xifad.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(CONNECTION_STRING)
+    db = client.get_database("gfg")
+    col = db.get_collection("details")
+    col.insert_one(info)
+    
+    return render(request, template)
 
 def read_json():
     with open("../destinations.json",'r',encoding='UTF-8') as load_f:

@@ -28,6 +28,8 @@ urlpatterns = [
     path('user/bookHistory',views.bookHistory),
     path('user/HotelList', views.hotelList),
     path('user/HotelDetail', views.hotelDetail),
+    path('user/checkout', views.check_out),
+    path('user/bookingsuccessful', views.booking_successful),
     path('user/logout',views.logout_call, name="logout_call"),
     path("user/destinations_filtered.json", views.json_view)
 ]

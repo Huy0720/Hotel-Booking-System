@@ -85,19 +85,35 @@ def hotelList(request):
     template = "HotelList.html"
     dest = request.POST
     print(dest)
-    print(dest['destination'])
-    a = dest['destination']
-    b = dest['number2']
-    c = dest['date1']
-    d = dest['number1']
+    print(dest['hotel_name'])
+    a = dest['hotel_name']
+    b = dest['hotel_guest']
+    c = dest['hotel_date']
+    d = dest['hotel_rooms']
+    e = int(dest['number1'])
     x = read_json()
     y = find_des_id(a,x)
     hotel_l = list()
+    per_page = 5
+    page_num = 0
     if y != False:
         api_1 = concate_url_1(y,b,c,d)
         api_1_return = read_json_1(api_1)
-        if len(api_1_return['hotels'])>5:
-            api_1_return['hotels'] = api_1_return['hotels'][0:5]
+        hotel_total = [api_1_return['hotels'][i:i + per_page] for i in range(0, len(api_1_return['hotels']), per_page)]
+        page_num = len(hotel_total)
+
+        if e>page_num:
+            hotel_l = []
+            return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':page_num,'hotel_rooms':d,'hotel_name':a ,'number1':e})
+
+        elif e<=0:
+            hotel_l = []
+            return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':page_num,'hotel_rooms':d,'hotel_name':a ,'number1':e})
+
+        else:
+            api_1_return['hotels'] = hotel_total[e]
+
+        
         for i in api_1_return['hotels']:
             try:
                 api_2 = concate_url_2(i['id'])
@@ -111,7 +127,7 @@ def hotelList(request):
                 continue
     else:
         hotel_l = []
-    return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b})
+    return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':page_num,'hotel_rooms':d,'hotel_name':a ,'number1':e})
 
 
 def hotelDetail(request):
@@ -123,11 +139,12 @@ def hotelDetail(request):
     c = dest['hotel_date']
     d = dest['hotel_guest']
     api_2 = concate_url_2(a)
+
     print(api_2)
     api_2_return = read_json_2(api_2)
+    print('lati', api_2_return["latitude"])
     api_2_return = image_url(api_2_return)
     api_2_return = image_url_more(api_2_return)
-
     api_3 = concate_url_3(b,d,c,a)
     print(api_3)
     api_3_return = read_json_1(api_3)
@@ -150,7 +167,6 @@ def find_des_id(des, des_l):
 
 def concate_url_1(des_id,num_guests,date,room_num):
     x = date
-    print(x)
     l = list()
     l.append(x.split(' ')[0])
     l.append(x.split(' ')[1])
@@ -169,7 +185,6 @@ def concate_url_1(des_id,num_guests,date,room_num):
     else:
         y = num_guests + '|'
         num_guests = y*int(room_num)
-        print( num_guests)
         url = 'https://hotelapi.loyalty.dev/api/hotels/prices?destination_id=' +des_id+ '&checkin='+start_date+'&'+'checkout='+end_date+'&lang=en_US&currency=SGD&country_code=SG&guests='+num_guests+'&partner_id=1'
     return url
 
@@ -180,7 +195,6 @@ def concate_url_2(hotel_id):
 
 def concate_url_3(des_id,num_guests,date,hotel_id):
     x = date
-    print(x)
     l = list()
     l.append(x.split(' ')[0])
     l.append(x.split(' ')[1])

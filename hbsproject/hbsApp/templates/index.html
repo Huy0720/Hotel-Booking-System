@@ -180,33 +180,33 @@
                 <form method="post" action="/user/HotelList">
                     {% csrf_token %}
                     <div class="tm-form1">
-                        <label for="number2">Destination</label>
-                        <input type="text" style="width:110%;" name="destination" id="destination"
+                        <label for="hotel_guest">Destination</label>
+                        <input type="text" style="width:110%;" name="hotel_name" id="destination"
                             placeholder="Enter Destination">
 
                         <div class="tm-num1" id="handleCounter1">
-                            <label for="number1">Number of Rooms</label><br />
+                            <label for="hotel_rooms">Number of Rooms</label><br />
                             <button type="button" class="counter-minus btn btn-primary">- </button>
-                            <input type="text" name="number1" id="number1" value="1">
+                            <input type="text" name="hotel_rooms" id="hotel_rooms" value="1">
                             <button type="button" class="counter-plus btn btn-primary">+ </button>
                         </div>
                         <div class="tm-num2" id="handleCounter2">
-                            <label for="number2">Number of Guests</label><br />
+                            <label for="hotel_guest">Number of Guests</label><br />
                             <button type="button" class="counter-minus btn btn-primary">-</button>
-                            <input type="text" name="number2" id="number2" value="1">
+                            <input type="text" name="hotel_guest" id="hotel_guest" value="1">
                             <button type="button" class="counter-plus btn btn-primary">+</button>
                         </div>
                     </div>
-
                     <div class="vertical-line"> </div>
 
                     <div class="tm-form2">
                         <div class="tm-cl">
-                            <label for="date1" class="arrival">Visiting Dates from Arrival to Departure</label>
-                            <input type="text" name="date1" class="range" style="width:80%;" readonly="readonly">
+                            <label for="hotel_date" class="arrival">Visiting Dates from Arrival to Departure</label>
+                            <input type="text" name="hotel_date" class="range" style="width:80%;" readonly="readonly">
                             <input type="submit" id="sub" value="Search">
                         </div>
                     </div>
+                    <input type="hidden" name="number1" value="1">
                 </form>
             </div>
             <div id="main-section" class="landing-page-main">

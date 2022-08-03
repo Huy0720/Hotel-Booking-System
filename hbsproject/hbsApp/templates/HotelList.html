@@ -37,7 +37,7 @@
             margin-top: 10%;
             font-size: 50px;
             color: #ec3d68;
-            margin-left: 20%;
+            margin-left: 27%;
         }
 
         .tm-main p {
@@ -50,6 +50,72 @@
             padding: 2%;
             color: rgb(255, 255, 255);
             font-weight: 700;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #ec3d68;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {
+            background-color: #ec3d68
+        }
+
+        .button:active {
+            background-color: #ec3d68;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+
+        .button1 {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: #f4511e;
+            border: none;
+            color: #FFFFFF;
+            text-align: center;
+            font-size: 28px;
+            height: 45px;
+            width: 100px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .button1 span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button1 span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button1:hover span {
+            padding-right: 25px;
+        }
+
+        .button1:hover span:after {
+            opacity: 1;
+            right: 0;
         }
     </style>
 </head>
@@ -70,6 +136,7 @@
     <div class="tm-main">
         <p>Hotel Search Result</p>
     </div>
+
     {% if hotel_list %}
     {% for hotel in hotel_list %}
     <form method="post" action="/user/HotelDetail">
@@ -80,10 +147,11 @@
                 <p class="describe" type="text">Hotel name : {{hotel.name}}</p> <br>
                 <p class="describe" type="text">Hotel address :{{hotel.address}}</p> <br>
                 <p class="describe" type="text">Hotel rating :{{hotel.rating}}</p> <br>
-                <input type="hidden" name="hotel_info" id="hotel_info" value="{{hotel.id}}">
-                <input type="hidden" name="hotel_dest" id="hotel_info" value="{{book_dest}}">
-                <input type="hidden" name="hotel_date" id="hotel_info" value="{{book_date}}">
-                <input type="hidden" name="hotel_guest" id="hotel_info" value="{{num_of_guest}}">
+                <input type="hidden" name="hotel_info" value="{{hotel.id}}">
+                <input type="hidden" name="hotel_dest" value="{{book_dest}}">
+                <input type="hidden" name="hotel_date" value="{{book_date}}">
+                <input type="hidden" name="hotel_guest" value="{{num_of_guest}}">
+                <input type="hidden" name="hotel_rooms" value="{{hotel_rooms}}">
             </div>
 
             <button type="submit"
@@ -93,9 +161,42 @@
         </div>
     </form>
     {% endfor %}
+    <form method="post" action="/user/HotelList">
+        <input type="hidden" name="hotel_info" value="{{hotel.id}}">
+        <input type="hidden" name="hotel_name" value="{{hotel_name}}">
+        <input type="hidden" name="hotel_date" value="{{book_date}}">
+        <input type="hidden" name="hotel_guest" value="{{num_of_guest}}">
+        <input type="hidden" name="hotel_rooms" value="{{hotel_rooms}}">
+        <div style="left: 40%; position: absolute;">
+            <label for="number1" style="color: #ec3d68; left: 20%; position: absolute; font-size: 20px;">Page
+                Number</label><br />
+            <button class="button" id="mins">pre</button>
+            <input type="text" name="number1" id="number1"
+                style="height:40px; color: #ec3d68; width: 150px; text-align:center; font-size: 20px;"
+                value="{{number1}}">
+            <button class="button" id="plus">next</button>
+            <button class="button1"><span> go to
+                </span></button>
+        </div>
+    </form>
+    <script>
+        var btn1 = document.getElementById("mins");
+        var num1 = document.getElementById("number1");
+        var btn2 = document.getElementById("plus");
+        btn1.onclick = function () {
+            if (Number(num1.value) > 1) {
+                num1.value = Number(num1.value) - 1
+            }
+            else { pass }
+        }
+        btn2.onclick = function () { num1.value = Number(num1.value) + 1 }
+    </script>
     {% else %}
-    <p class="warning">There are no hotels in the destination</p>
+    <p class="warning">There are no hotels in the page</p>
     {% endif %}
+
+
+
 
 </body>
 

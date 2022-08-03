@@ -636,8 +636,8 @@ textarea {
     /* margin: 5%; */
 }
 
-#number1,
-#number2 {
+#hotel_rooms,
+#hotel_guest {
     width: 30%;
     padding: 3% 8%;
     margin-top: 5%;

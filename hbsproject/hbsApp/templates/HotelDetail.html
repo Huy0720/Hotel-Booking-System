@@ -13,7 +13,7 @@
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../static/css/sticky-nav.css">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script type="module" src="hbsproject/hbsApp/static/js/map.js"></script>
+  <!-- <script type="module" src="hbsproject/hbsApp/static/js/map.js"></script> -->
 
   <style data-tag="reset-style-sheet">
     html {
@@ -234,33 +234,36 @@
           </div>
           <!-- adding a map of the hotel and its surrounding using google map api -->
           <div id="map"></div>
-          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBj1qJYiyYuY6Xlo9gF9j6nNB6GrllA9E&callback=initMap&libraries=&v=weekly"async>
-          </script>
+          <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBj1qJYiyYuY6Xlo9gF9j6nNB6GrllA9E&callback=initMap&libraries=&v=weekly"
+            async>
+            </script>
           <script>
             function initMap() {
-                    const lat = parseFloat(document.getElementById("lat").innerHTML);
-                    const lng = parseFloat(document.getElementById("lng").innerHTML);
-              const hotel = {lat: lat,lng: lng};
+              const lat = parseFloat(document.getElementById("lat").innerHTML);
+              const lng = parseFloat(document.getElementById("lng").innerHTML);
+              const hotel = { lat: lat, lng: lng };
               const map = new google.maps.Map(
                 document.getElementById("map"), {
-                  zoom: 11,
-                  center: hotel,
-                });
+                zoom: 11,
+                center: hotel,
+              });
               const marker = new google.maps.Marker({
                 position: hotel,
                 map: map,
               });
               map.addListener("center_changed", () => {
-                    window.setTimeout(() => {
-                        map.panTo(marker.getPosition());
-                    }, 3000);
-                });
-              marker.addListener("click", () =>{
-                  map.setZoom(15);
-                  map.setCenter(marker.getPosition());
-                });}
-          window.initMap = initMap;
-          </script> 
+                window.setTimeout(() => {
+                  map.panTo(marker.getPosition());
+                }, 3000);
+              });
+              marker.addListener("click", () => {
+                map.setZoom(15);
+                map.setCenter(marker.getPosition());
+              });
+            }
+            window.initMap = initMap;
+          </script>
         </div>
         <div class="landing-page-container4">
           <div class="landing-page-container5">

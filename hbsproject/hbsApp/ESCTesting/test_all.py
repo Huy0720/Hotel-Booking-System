@@ -19,17 +19,22 @@ class TestDestinationNegative():
     self.driver.quit()
   
   def test_destinationNegative(self):
-    self.driver.get("http://127.0.0.1:8000/user/index")
-    self.driver.set_window_size(1434, 732)
-    self.driver.execute_script("window.scrollBy(0,{})".format(600))
-    time.sleep(3)
-    self.driver.find_element(By.NAME, "destination").click()
-    self.driver.find_element(By.NAME, "destination").send_keys("123")
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 700)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
     time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
+    self.driver.execute_script("window.scrollBy(0,{})".format(600))
+    time.sleep(2)
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("123")
     self.driver.find_element(By.ID, "sub").click()
     self.driver.find_element(By.CSS_SELECTOR, ".warning").click()
-    time.sleep(1)
     self.driver.close()
+  
 
 class TestDestinationPositive():
   def setup_method(self, method=None):
@@ -40,18 +45,23 @@ class TestDestinationPositive():
     self.driver.quit()
   
   def test_destinationPositive(self):
-    self.driver.get("http://127.0.0.1:8000/user/index")
-    self.driver.set_window_size(1434, 632)
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 700)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
-    time.sleep(3)
-    self.driver.find_element(By.NAME, "destination").click()
-    self.driver.find_element(By.NAME, "destination").send_keys("London, England, UK (LGW-Gatwick)")
-    time.sleep(3)
+    time.sleep(2)
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".box:nth-child(3) .describe").click()
+    self.driver.find_element(By.NAME, "image_url").click()
     self.driver.close()
 
-class TestLoginNegativeInvalidPassword():
+class TestLoginNegative():
   def setup_method(self, method=None):
     self.driver = webdriver.Firefox(executable_path=r'C:/geckodriver.exe')
     self.vars = {}
@@ -59,13 +69,16 @@ class TestLoginNegativeInvalidPassword():
   def teardown_method(self):
     self.driver.quit()
   
-  def test_loginNegativeInvalidPassword(self):
-    self.driver.get("http://127.0.0.1:8000/user/login")
-    self.driver.set_window_size(1434, 632)
+  def test_loginNegative(self):
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 701)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(2) > a").click()
     self.driver.find_element(By.ID, "emailadd").click()
-    self.driver.find_element(By.ID, "emailadd").send_keys("Junyi_liang@mymail.sutd.edu.sg")
+    self.driver.find_element(By.ID, "emailadd").send_keys("100@gmail.com")
     self.driver.find_element(By.ID, "passwd").click()
-    self.driver.find_element(By.ID, "passwd").send_keys("1379707007")
+    self.driver.find_element(By.ID, "passwd").send_keys("Wy1379707007")
     self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
     self.driver.find_element(By.CSS_SELECTOR, ".text:nth-child(1)").click()
     self.driver.close()
@@ -79,16 +92,17 @@ class TestLoginPositive():
     self.driver.quit()
   
   def test_loginPositive(self):
-    self.driver.get("http://127.0.0.1:8000/user/login")
-    self.driver.set_window_size(1434, 632)
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 703)
+    self.driver.find_element(By.ID, "open").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(2) > a").click()
     self.driver.find_element(By.ID, "emailadd").click()
-    self.driver.find_element(By.ID, "emailadd").send_keys("Junyi_liang@mymail.sutd.edu.sg")
+    self.driver.find_element(By.ID, "emailadd").send_keys("200@gmail.com")
     self.driver.find_element(By.ID, "passwd").click()
-    self.driver.find_element(By.ID, "passwd").send_keys("Wy1379707007")
+    self.driver.find_element(By.ID, "passwd").send_keys("123456")
     self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
-    self.driver.execute_script("window.scrollBy(0,{})".format(200))
-    time.sleep(1)
-    self.driver.find_element(By.CSS_SELECTOR, ".tm-main > p").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".heading:nth-child(1)").click()
     self.driver.close()
 
 
@@ -101,23 +115,144 @@ class TestRegisterPositive():
     self.driver.quit()
   
   def test_registerPositive(self):
-    self.driver.get("http://127.0.0.1:8000/user/register")
-    self.driver.set_window_size(1434, 699)
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 703)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) > a").click()
     self.driver.find_element(By.ID, "email").click()
-    self.driver.find_element(By.ID, "email").send_keys("110@gmail.com")
+    self.driver.find_element(By.ID, "email").send_keys("304@gmail.com")
     self.driver.find_element(By.ID, "password").click()
-    self.driver.find_element(By.ID, "password").send_keys("123456")
+    self.driver.find_element(By.ID, "password").send_keys("1379707007")
     self.driver.find_element(By.ID, "passwordrepeat").click()
-    self.driver.find_element(By.ID, "passwordrepeat").send_keys("123456")
+    self.driver.find_element(By.ID, "passwordrepeat").send_keys("1379707007")
     self.driver.find_element(By.CSS_SELECTOR, ".btn").click()
-    self.driver.get("http://127.0.0.1:8000/admin/")
-    self.driver.find_element(By.ID, "id_username").click()
-    self.driver.find_element(By.ID, "id_username").send_keys("escgroup8")
-    self.driver.find_element(By.ID, "id_password").click()
-    self.driver.find_element(By.ID, "id_password").send_keys("123456")
-    self.driver.find_element(By.CSS_SELECTOR, ".submit-row > input").click()
-    self.driver.find_element(By.LINK_TEXT, "Users").click()
-    self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(1) > .field-email").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".heading:nth-child(1)").click()
+    self.driver.close()
+
+class TestNextPagePositive():
+  def setup_method(self, method=None):
+    self.driver = webdriver.Firefox(executable_path=r'C:/geckodriver.exe')
+    self.vars = {}
+  
+  def teardown_method(self):
+    self.driver.quit()
+  
+  def test_nextPagePositive(self):
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 703)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
+    self.driver.execute_script("window.scrollBy(0,{})".format(600))
+    time.sleep(2)
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
+    self.driver.find_element(By.ID, "sub").click()
+    time.sleep(10)
+    self.driver.execute_script("window.scrollBy(0,{})".format(1000))
+    time.sleep(1)
+    self.driver.find_element(By.ID, "plus").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".tm-main > p").click()
+    self.driver.close()
+
+
+class TestNextPageNegativeLarger():
+  def setup_method(self, method=None):
+    self.driver = webdriver.Firefox(executable_path=r'C:/geckodriver.exe')
+    self.vars = {}
+  
+  def teardown_method(self):
+    self.driver.quit()
+  
+  def test_nextPageNegativeLarger(self):
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 703)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
+    self.driver.execute_script("window.scrollBy(0,{})".format(600))
+    time.sleep(2)
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
+    self.driver.find_element(By.ID, "sub").click()
+    time.sleep(10)
+    self.driver.execute_script("window.scrollBy(0,{})".format(1000))
+    time.sleep(1)
+    self.driver.find_element(By.ID, "number1").click()
+    self.driver.find_element(By.ID, "number1").send_keys("0000")
+    self.driver.find_element(By.CSS_SELECTOR, "span").click()
+    time.sleep(10)
+    self.driver.find_element(By.CSS_SELECTOR, ".warning").click()
+    self.driver.close()
+
+
+class TestCheckoffPositive():
+  def setup_method(self, method=None):
+    self.driver = webdriver.Firefox(executable_path=r'C:/geckodriver.exe')
+    self.vars = {}
+  
+  def teardown_method(self):
+    self.driver.quit()
+  
+  def test_checkoffPositive(self):
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 703)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
+    self.driver.execute_script("window.scrollBy(0,{})".format(600))
+    time.sleep(2)
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
+    self.driver.find_element(By.ID, "sub").click()
+    time.sleep(10)
+    self.driver.find_element(By.CSS_SELECTOR, "form:nth-child(3) button").click()
+    time.sleep(1)
+    self.driver.execute_script("window.scrollBy(0,{})".format(1200))
+    time.sleep(3)
+    self.driver.find_element(By.CSS_SELECTOR, "form:nth-child(2) span").click()
+    self.driver.find_element(By.ID, "salutation").click()
+    dropdown = self.driver.find_element(By.ID, "salutation")
+    dropdown.find_element(By.XPATH, "//option[. = 'Mr.']").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#salutation > option:nth-child(2)").click()
+    self.driver.find_element(By.ID, "fname").click()
+    self.driver.find_element(By.ID, "fname").send_keys("a")
+    self.driver.find_element(By.ID, "lname").click()
+    self.driver.find_element(By.ID, "lname").send_keys("b")
+    self.driver.find_element(By.ID, "email").click()
+    self.driver.find_element(By.ID, "email").send_keys("100@gmail.com")
+    self.driver.find_element(By.ID, "phone").click()
+    self.driver.find_element(By.ID, "phone").send_keys("84634785")
+    self.driver.find_element(By.ID, "message").click()
+    self.driver.find_element(By.ID, "message").send_keys("None")
+    self.driver.find_element(By.ID, "card_number").click()
+    self.driver.find_element(By.ID, "card_number").send_keys("123456789")
+    self.driver.find_element(By.ID, "card_name").click()
+    self.driver.find_element(By.ID, "card_name").send_keys("abc")
+    self.driver.find_element(By.ID, "exp_month").click()
+    dropdown = self.driver.find_element(By.ID, "exp_month")
+    dropdown.find_element(By.XPATH, "//option[. = 'January']").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#exp_month > option:nth-child(2)").click()
+    self.driver.find_element(By.ID, "exp_year").click()
+    dropdown = self.driver.find_element(By.ID, "exp_year")
+    dropdown.find_element(By.XPATH, "//option[. = '2022']").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#exp_year > option:nth-child(2)").click()
+    self.driver.find_element(By.ID, "CVV").click()
+    self.driver.find_element(By.ID, "CVV").send_keys("101")
+    self.driver.find_element(By.ID, "billing_address").click()
+    self.driver.find_element(By.ID, "billing_address").send_keys("abc")
+    self.driver.find_element(By.ID, "submitDetails").click()
+    self.driver.find_element(By.CSS_SELECTOR, "h2").click()
     self.driver.close()
 
 if __name__ == '__main__':
@@ -126,7 +261,7 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_destinationNegative()
-    print('run success time is '+ str(time.time()-start))
+    print('******************run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -136,17 +271,17 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_destinationPositive()
-    print('run success time is '+ str(time.time()-start))
+    print('******************run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
 
-# TestLoginNegativeInvalidPassword testing
-    test = TestLoginNegativeInvalidPassword()
+# TestLoginNegative testing
+    test = TestLoginNegative()
     test.setup_method()
     start = time.time()
-    test.test_loginNegativeInvalidPassword()
-    print('run success time is '+ str(time.time()-start))
+    test.test_loginNegative()
+    print('******************run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -156,7 +291,7 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_loginPositive()
-    print('run success time is '+ str(time.time()-start))
+    print('******************run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -166,7 +301,37 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_registerPositive()
-    print('run success time is '+ str(time.time()-start))
+    print('******************run success time is '+ str(time.time()-start))
+    time.sleep(2)
+    # 关闭程序
+    test.teardown_method()
+
+# TestNextPagePositive testing
+    test = TestNextPagePositive()
+    test.setup_method()
+    start = time.time()
+    test.test_nextPagePositive()
+    print('******************run success time is '+ str(time.time()-start))
+    time.sleep(2)
+    # 关闭程序
+    test.teardown_method()
+
+# TestNextPageNegativeLarger testing
+    test = TestNextPageNegativeLarger()
+    test.setup_method()
+    start = time.time()
+    test.test_nextPageNegativeLarger()
+    print('******************run success time is '+ str(time.time()-start))
+    time.sleep(2)
+    # 关闭程序
+    test.teardown_method()
+
+# TestCheckoffPositive testing
+    test = TestCheckoffPositive()
+    test.setup_method()
+    start = time.time()
+    test.test_checkoffPositive()
+    print('******************run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()

@@ -15,26 +15,45 @@ class TestDestinationNegative():
     self.driver = webdriver.Firefox(executable_path=r'C:/geckodriver.exe')
     self.vars = {}
   
-  def teardown_method(self):
+  def teardown_method(self, method):
     self.driver.quit()
   
   def test_destinationNegative(self):
-    self.driver.get("http://127.0.0.1:8000/user/index")
-    self.driver.set_window_size(1434, 732)
-    time.sleep(5)
-    self.driver.find_element(By.NAME, "destination").click()
-    self.driver.find_element(By.NAME, "destination").send_keys("123")
-    time.sleep(1)
+    self.driver.get("http://127.0.0.1:8000/")
+    self.driver.set_window_size(1434, 700)
+    self.driver.find_element(By.CSS_SELECTOR, ".fa-bars").click()
+    time.sleep(2)
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1)").click()
+    self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(1) > a").click()
+    self.driver.execute_script("window.scrollBy(0,{})".format(600))
+    time.sleep(3)
+    self.driver.find_element(By.ID, "destination").click()
+    self.driver.find_element(By.ID, "destination").send_keys("123")
+    self.driver.find_element(By.CSS_SELECTOR, "#handleCounter1 > .counter-plus").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#handleCounter1 > .counter-plus").click()
+    element = self.driver.find_element(By.CSS_SELECTOR, "#handleCounter1 > .counter-plus")
+    actions = ActionChains(self.driver)
+    actions.double_click(element).perform()
+    self.driver.find_element(By.CSS_SELECTOR, "#handleCounter2 > .counter-plus").click()
+    self.driver.find_element(By.CSS_SELECTOR, "#handleCounter2 > .counter-plus").click()
+    element = self.driver.find_element(By.CSS_SELECTOR, "#handleCounter2 > .counter-plus")
+    actions = ActionChains(self.driver)
+    actions.double_click(element).perform()
+    self.driver.find_element(By.NAME, "hotel_date").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(5)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-saturday:nth-child(6)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".tm-cl").click()
     self.driver.find_element(By.ID, "sub").click()
     self.driver.find_element(By.CSS_SELECTOR, ".warning").click()
-    time.sleep(1)
     self.driver.close()
   
 if __name__ == '__main__':
-    # ! main方法中进行调用
+# TestDestinationNegative testing
     test = TestDestinationNegative()
     test.setup_method()
+    start = time.time()
     test.test_destinationNegative()
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()

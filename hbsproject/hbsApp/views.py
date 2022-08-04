@@ -54,8 +54,8 @@ def login(request):
         currUser = authenticate(username= emailadd,password= passwd)
         print(passwd)
         print(currUser)
-        if currUser != None:
-            login(request,currUser)
+        if currUser == None:
+            # login(request,currUser)
             return redirect('./index')
         else:
             return redirect('./register')

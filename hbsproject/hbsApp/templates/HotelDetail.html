@@ -231,16 +231,36 @@
               </li>
               {% endfor %}
             </ul>
-
-            <div id="map">
-              <script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBj1qJYiyYuY6Xlo9gF9j6nNB6GrllA9E&callback=initMap&v=weekly"
-                defer>
-                </script>
-            </div>
-
-
           </div>
+          <!-- adding a map of the hotel and its surrounding using google map api -->
+          <div id="map"></div>
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBj1qJYiyYuY6Xlo9gF9j6nNB6GrllA9E&callback=initMap&libraries=&v=weekly"async>
+          </script>
+          <script>
+            function initMap() {
+                    const lat = parseFloat(document.getElementById("lat").innerHTML);
+                    const lng = parseFloat(document.getElementById("lng").innerHTML);
+              const hotel = {lat: lat,lng: lng};
+              const map = new google.maps.Map(
+                document.getElementById("map"), {
+                  zoom: 11,
+                  center: hotel,
+                });
+              const marker = new google.maps.Marker({
+                position: hotel,
+                map: map,
+              });
+              map.addListener("center_changed", () => {
+                    window.setTimeout(() => {
+                        map.panTo(marker.getPosition());
+                    }, 3000);
+                });
+              marker.addListener("click", () =>{
+                  map.setZoom(15);
+                  map.setCenter(marker.getPosition());
+                });}
+          window.initMap = initMap;
+          </script> 
         </div>
         <div class="landing-page-container4">
           <div class="landing-page-container5">

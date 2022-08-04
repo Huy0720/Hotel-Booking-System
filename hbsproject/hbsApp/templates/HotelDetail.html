@@ -12,6 +12,9 @@
   <meta charset="utf-8" />
   <meta property="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="../static/css/sticky-nav.css">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script type="module" src="hbsproject/hbsApp/static/js/map.js"></script>
+
   <style data-tag="reset-style-sheet">
     html {
       line-height: 1.15;
@@ -201,18 +204,18 @@
           <script src="../static/js/script.js"></script>
           <!-- <img alt="image" src="{{hotel_detail.image_url}}" class="landing-page-image" /> -->
           <div class="landing-page-container3">
-            <span class="landing-page-text">{{hotel_detail.name}}</span>
+            <span class="landing-page-text" id="hotel_name">{{hotel_detail.name}}</span>
             <span class="landing-page-text01">
               <span>Address</span>
-              <span class="landing-page-text03">{{hotel_detail.address}}</span>
+              <span class="landing-page-text03" id="hotel_address">{{hotel_detail.address}}</span>
             </span>
             <span class="landing-page-text01">
               <span>latitude</span>
-              <span class="landing-page-text03">{{hotel_detail.latitude}}</span>
+              <span class="landing-page-text03" id="latitude" >{{hotel_detail.latitude}}</span>
             </span>
             <span class="landing-page-text01">
               <span>longitude</span>
-              <span class="landing-page-text03">{{hotel_detail.longitude}}</span>
+              <span class="landing-page-text03" id="longtitude">{{hotel_detail.longitude}}</span>
             </span>
             <span class="landing-page-text04">
               <span>Rating</span>
@@ -228,6 +231,15 @@
               </li>
               {% endfor %}
             </ul>
+
+            <div id="map"></div>
+            <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBj1qJYiyYuY6Xlo9gF9j6nNB6GrllA9E&callback=initMap&v=weekly"
+            defer>
+            </script>
+            
+          </div>
+
           </div>
         </div>
         <div class="landing-page-container4">

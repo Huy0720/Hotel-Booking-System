@@ -42,6 +42,14 @@
   justify-content: flex-start;
 }
 
+#map {
+  height:500px;
+  width: 30%;
+  position:absolute;
+  right:16%;
+
+}
+
 .landing-page-container8 {
   width: 50%;
   height: 500px;

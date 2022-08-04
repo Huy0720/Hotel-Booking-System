@@ -24,6 +24,7 @@ import time
 
 from pymongo import MongoClient
 import pymongo
+from cryptography.fernet import Fernet
 
 class HomeView(CreateView):
     template_name = 'home.html'
@@ -163,14 +164,15 @@ def check_out(request):
 def booking_successful(request):
     template = "SuccessfulBooking.html"
     dest = request.POST
+    key = Fernet.generate_key()
     info = {
             "Salutation": dest["salutation"] + ' '+ dest["fname"] + ' ' + dest["lname"],
-            "Email": dest["email"],
-            "Phone": dest["phone"],
+            "Email": encrypt(dest["email"],key)[1],
+            "Phone": encrypt(dest["phone"],key)[1],
             "Special Request": dest["message"],
-            "Credit Card Number": dest["card_number"],
+            "Credit Card Number": encrypt(dest["card_number"],key)[1],
             "Expiry": dest["exp_month"] + ' ' + dest["exp_year"],
-            "CVV/CVC": dest["CVV"],
+            "CVV/CVC": encrypt(dest["CVV"],key)[1],
             "Bliing Address": dest["billing_address"]
             }
 
@@ -181,6 +183,34 @@ def booking_successful(request):
     col.insert_one(info)
     
     return render(request, template)
+
+def encrypt(data, sym_key):
+    #key = Fernet.generate_key()
+    fernet = Fernet(sym_key)
+    encMessage = fernet.encrypt(data.encode())
+    hidden_data = hide_info(data)
+    return [encMessage, hidden_data]
+
+def decrypt(data, sym_key):
+    fernet = Fernet(sym_key)
+    decMessage = fernet.decrypt(data).decode()
+    return decMessage
+
+def hide_info(data):
+    #Card Number
+    if len(data) == 16 and "@" not in data:
+        return data[0:6] + "******" + data[-4:]
+    #Email
+    elif "@" in data:
+        return "****@gmail.com"
+    #CCV
+    elif len(data) == 3:
+        return "***"
+    #Phone Number
+    else:
+        remainder = len(data) - 4
+        return ('*'*remainder + data[-4:]) 
+
 
 def read_json():
     with open("../destinations.json",'r',encoding='UTF-8') as load_f:

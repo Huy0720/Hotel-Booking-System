@@ -26,6 +26,8 @@ from pymongo import MongoClient
 import pymongo
 from cryptography.fernet import Fernet
 
+import re
+
 class HomeView(CreateView):
     template_name = 'home.html'
     form_class = SearchDestinationForm
@@ -106,7 +108,7 @@ def hotelList(request):
         hotel_total = [api_1_return['hotels'][i:i + per_page] for i in range(0, len(api_1_return['hotels']), per_page)]
         page_num = len(hotel_total)
 
-        if e>page_num:
+        if e>=page_num:
             hotel_l = []
             return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':page_num,'hotel_rooms':d,'hotel_name':a ,'number1':e})
 
@@ -146,7 +148,8 @@ def hotelDetail(request):
 
     print(api_2)
     api_2_return = read_json_2(api_2)
-    print('lati', api_2_return["latitude"])
+    pattern = re.compile(r'<[^>]+>',re.S)
+    api_2_return['description'] = pattern.sub('',api_2_return['description'] )
     api_2_return = image_url(api_2_return)
     api_2_return = image_url_more(api_2_return)
     api_3 = concate_url_3(b,d,c,a)

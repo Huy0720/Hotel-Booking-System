@@ -22,14 +22,14 @@ from hbsApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("hbsApp.urls")),
-    path('user/index',views.index),
+    path('user/index',views.index, name="index"),
     path('user/login',views.login, name="login"),
     path('user/register',views.register, name="register"),
-    path('user/bookHistory',views.bookHistory),
-    path('user/HotelList', views.hotelList),
-    path('user/HotelDetail', views.hotelDetail),
-    path('user/checkout', views.check_out),
-    path('user/bookingsuccessful', views.booking_successful),
+    path('user/bookHistory',views.bookHistory, name="bookHistory"),
+    path('user/HotelList', views.hotelList, name="hotelList"),
+    path('user/HotelDetail', views.hotelDetail, name="hotelDetail"),
+    path('user/checkout', views.check_out, name="checkout"),
+    path('user/bookingsuccessful', views.booking_successful, name="booking_successful"),
     path('user/logout',views.logout_call, name="logout_call"),
     path("user/destinations_filtered.json", views.json_view)
 ]

@@ -1,12 +1,16 @@
-from django.test import TestCase
-from django.urls import reverse
+from django.test import TestCase, Client
+from django.urls import reverse, resolve
 from django.contrib.auth.models import User
+from django.test import SimpleTestCase
+from .views import *
+from .models import *
+
 
 # Create your tests here.
 class BaseTest(TestCase):
     def setUp(self):
         self.register_url=reverse('register')
-        self.login_url=reverse('login_call')
+        self.login_url=reverse('login')
         self.user={
             'email': 'testemail@gmail.com',
             'password': 'password',
@@ -63,4 +67,34 @@ class LoginTest(BaseTest):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'login.html')
     
+
+class TestURls(SimpleTestCase):
+    def test_index_url_is_resolved(self):
+        url = reverse('index')
+        self.assertEquals(resolve(url).func, index)
+    def test_bookHistory_url_is_resolved(self):
+        url = reverse('bookHistory')
+        self.assertEquals(resolve(url).func, bookHistory)
+    def test_hotelList_url_is_resolved(self):
+        url = reverse('hotelList')
+        self.assertEquals(resolve(url).func, hotelList)
+    def test_hotelDetail_url_is_resolved(self):
+        url = reverse('hotelDetail')
+        self.assertEquals(resolve(url).func, hotelDetail)
+    def test_checkout_url_is_resolved(self):
+        url = reverse('checkout')
+        self.assertEquals(resolve(url).func, check_out)
+    def test_bookingsuccessful_url_is_resolved(self):
+        url = reverse('booking_successful')
+        self.assertEquals(resolve(url).func, booking_successful)
+    def test_logout_url_is_resolved(self):
+        url = reverse('logout_call')
+        self.assertEquals(resolve(url).func, logout_call)
+
+class TestViews(TestCase):
+    def test_index_GET(self):
+        client = Client()
+        response = client.get(reverse('index'))
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
 

@@ -29,7 +29,7 @@
   width: 50%;
   float:right;
   margin-top: 100px;
-  margin-right:30px;
+  margin-right:10px;
 }
 
 .landing-page-image {
@@ -48,14 +48,6 @@
   margin-bottom: 0px;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-#map {
-  height:500px;
-  width: 30%;
-  position:absolute;
-  right:16%;
-
 }
 
 .landing-page-container8 {

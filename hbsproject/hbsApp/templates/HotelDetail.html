@@ -318,11 +318,10 @@
                   {{i.description}}
                 </p>
                 <br>
-                <p class="card-excerpt" id="excerpt">
-                  {{i.description}}
-                </p>
                 <input type="hidden" name="room_type" value="{{i.price_type}}">
+                <input type="hidden" name="room_description" value="{{i.description}}">
                 <input type="hidden" name="hotel_name" value="{{hotel_detail.name}}">
+                <input type="hidden" name="hotel_guest" value="{{hotel_guest}}">
                 <button type="submit" class="button"><span>Book it</span></button>
               </div>
             </div>

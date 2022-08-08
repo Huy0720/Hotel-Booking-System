@@ -58,6 +58,7 @@ class TestDestinationPositive():
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
+    time.sleep(7)
     self.driver.find_element(By.NAME, "image_url").click()
     self.driver.close()
 
@@ -121,7 +122,7 @@ class TestRegisterPositive():
     time.sleep(2)
     self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) > a").click()
     self.driver.find_element(By.ID, "email").click()
-    self.driver.find_element(By.ID, "email").send_keys("304@gmail.com")
+    self.driver.find_element(By.ID, "email").send_keys("305@gmail.com")
     self.driver.find_element(By.ID, "password").click()
     self.driver.find_element(By.ID, "password").send_keys("1379707007")
     self.driver.find_element(By.ID, "passwordrepeat").click()

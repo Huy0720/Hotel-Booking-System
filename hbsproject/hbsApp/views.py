@@ -145,7 +145,9 @@ def hotelDetail(request):
     c = dest['hotel_date']
     d = dest['hotel_guest']
     api_2 = concate_url_2(a)
-
+    print('*****************')
+    print(d)
+    print('*****************')
     print(api_2)
     api_2_return = read_json_2(api_2)
     pattern = re.compile(r'<[^>]+>',re.S)
@@ -155,13 +157,17 @@ def hotelDetail(request):
     api_3 = concate_url_3(b,d,c,a)
     print(api_3)
     api_3_return = read_json_1(api_3)
-    return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return})
+    return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return,'hotel_guest':d})
 
 def check_out(request):
     template = "checkout.html"
     dest = request.POST
     room_type = dest['room_type']
     hotel_name = dest['hotel_name']
+    print('-----------------')
+    print(dest['hotel_guest'])
+    print(dest['room_description'])
+    print('-----------------')
     return render(request, template,{'room_type':room_type, "hotel_name":hotel_name})
 
 def booking_successful(request):

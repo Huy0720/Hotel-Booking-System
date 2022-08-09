@@ -140,6 +140,7 @@ def hotelDetail(request):
     b = dest['hotel_dest']
     c = dest['hotel_date']
     d = dest['hotel_guest']
+    e = dest['hotel_rooms']
     api_2 = concate_url_2(a)
     print('*****************')
     print(d)
@@ -153,7 +154,7 @@ def hotelDetail(request):
     api_3 = concate_url_3(b,d,c,a)
     print(api_3)
     api_3_return = read_json_1(api_3)
-    return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return,'hotel_guest':d})
+    return render(request,template,{'hotel_detail':api_2_return,'room_detail':api_3_return,'hotel_guest':d,'hotel_rooms':e,'hotel_date':c})
 
 def check_out(request):
     template = "checkout.html"
@@ -161,9 +162,9 @@ def check_out(request):
     room_type = dest['room_type']
     hotel_name = dest['hotel_name']
     room_description = dest["room_description"]
-    num_of_guest = dest["hotel_guest"][0]
-    #num_of_room = len(dest["hotel_guest"])
-    
+    num_of_guest = dest["hotel_guest"]
+    num_of_room = dest["hotel_rooms"]
+    hotel_date = dest["hotel_date"]
     return render(request, template,{'room_type':room_type,"room_description": room_description, 
                                      "hotel_name":hotel_name, "num_of_guest": num_of_guest}) #"num_of_room": num_of_room})
 

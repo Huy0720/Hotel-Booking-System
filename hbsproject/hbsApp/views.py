@@ -82,10 +82,6 @@ def logout_call(request):
     logout(request)
     return redirect('./login')
 
-def bookHistory(request):
-    template = "bookHistory.html"
-    return render(request,template)
-
 
 def hotelList(request):
     template = "HotelList.html"
@@ -164,25 +160,43 @@ def check_out(request):
     dest = request.POST
     room_type = dest['room_type']
     hotel_name = dest['hotel_name']
-    print('-----------------')
-    print(dest['hotel_guest'])
-    print(dest['room_description'])
-    print('-----------------')
-    return render(request, template,{'room_type':room_type, "hotel_name":hotel_name})
+    room_description = dest["room_description"]
+    num_of_guest = dest["hotel_guest"][0]
+    #num_of_room = len(dest["hotel_guest"])
+    
+    return render(request, template,{'room_type':room_type,"room_description": room_description, 
+                                     "hotel_name":hotel_name, "num_of_guest": num_of_guest}) #"num_of_room": num_of_room})
 
 def booking_successful(request):
     template = "SuccessfulBooking.html"
     dest = request.POST
     key = Fernet.generate_key()
-    info = {
+    info = {"Encrypted":{
+            "Name": dest["hotel_name"],
+            "Type": dest["room_type"] + ' ' + dest["room_description"],
+            "Guests": dest["num_of_guest"],
             "Salutation": dest["salutation"] + ' '+ dest["fname"] + ' ' + dest["lname"],
             "Email": encrypt(dest["email"],key)[1],
             "Phone": encrypt(dest["phone"],key)[1],
-            "Special Request": dest["message"],
+            "Request": dest["message"],
             "Credit Card Number": encrypt(dest["card_number"],key)[1],
             "Expiry": dest["exp_month"] + ' ' + dest["exp_year"],
             "CVV/CVC": encrypt(dest["CVV"],key)[1],
             "Bliing Address": dest["billing_address"]
+            },
+            "Decrypted":{
+            "Name": dest["hotel_name"],
+            "Type": dest["room_type"] + ' ' + dest["room_description"],
+            "Guests": dest["num_of_guest"],
+            "Salutation": dest["salutation"] + ' '+ dest["fname"] + ' ' + dest["lname"],
+            "Email": dest["email"],
+            "Phone": dest["phone"],
+            "Request": dest["message"],
+            "Credit Card Number": dest["card_number"],
+            "Expiry": dest["exp_month"] + ' ' + dest["exp_year"],
+            "CVV/CVC": dest["CVV"],
+            "Bliing Address": dest["billing_address"]
+            }
             }
 
     CONNECTION_STRING = "mongodb+srv://huy:sutd@cluster0.xifad.mongodb.net/?retryWrites=true&w=majority"
@@ -192,6 +206,18 @@ def booking_successful(request):
     col.insert_one(info)
     
     return render(request, template)
+
+def booking_history(request):
+    template = "bookHistory.html"
+    CONNECTION_STRING = "mongodb+srv://huy:sutd@cluster0.xifad.mongodb.net/?retryWrites=true&w=majority"
+    client = MongoClient(CONNECTION_STRING)
+    db = client.get_database("gfg")
+    col = db.get_collection("details")
+    ls = []
+    data = col.find()
+    for i in data:
+        ls.append(i["Encrypted"])
+    return render(request, template,{"DataList": ls})
 
 def encrypt(data, sym_key):
     #key = Fernet.generate_key()

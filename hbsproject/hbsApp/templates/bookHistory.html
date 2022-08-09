@@ -57,6 +57,24 @@
             font-weight: 700;
         }
     </style>
+
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        }
+        
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+    </style>
 </head>
 
 <body style="background-color: #353535;">
@@ -75,6 +93,39 @@
     <div class="tm-main">
         <p>Book History</p>
     </div>
+
+    <table>
+        <tr id="table">
+            <th>Hotel Name</th>
+            <th>Room Type</th>
+            <th>Number of Guest</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Request</th>
+        </tr>
+
+        {% for data in DataList %}
+        <tr>
+            <td>{{data.Name}}</td>
+            <td>{{data.Type}}</td>
+            <td>{{data.Guests}}</td>
+            <td> {{data.Salutation}} </td>
+            <td> {{data.Email}} </td>
+            <td> {{data.Phone}}</td>
+            <td> {{data.Request}}</td>
+         </tr>
+        {% endfor %}
+
+     
+    </table>
+
+</body>
+
+
+
+
+<!-- 
     {% for hotel in hotel_list %}
     <div class="box">
         <img src={{hotel.image_url}}>
@@ -85,6 +136,7 @@
     </div>
     {% endfor %}
 
-</body>
+
+-->
 
 </html>

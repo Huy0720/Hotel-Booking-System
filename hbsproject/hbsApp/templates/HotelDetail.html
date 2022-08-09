@@ -317,7 +317,10 @@
                 <p class="card-excerpt" id="excerpt">
                   {{i.description}}
                 </p>
-                <br>
+                <p class="card-excerpt" id="excerpt">
+                  Price : {{i.price}}$
+                </p>
+
                 <input type="hidden" name="room_type" value="{{i.price_type}}">
                 <input type="hidden" name="room_description" value="{{i.description}}">
                 <input type="hidden" name="hotel_name" value="{{hotel_detail.name}}">

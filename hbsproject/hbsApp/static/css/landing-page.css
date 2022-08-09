@@ -16,7 +16,8 @@
 
 .outline-button-container {
     display: flex;
-    position: relative;
+    position: absolute;
+    padding-top: 220px;
 }
 
 .outline-button-button {
@@ -48,6 +49,7 @@
 }
 
 .place-card-container1 {
+    height: 300px;
     width: 100%;
     display: flex;
     padding: var(--dl-space-space-unit);

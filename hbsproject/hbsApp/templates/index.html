@@ -6,7 +6,6 @@
     <title>HomePage</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/sticky-nav.css">
     <style data-tag="reset-style-sheet">
         html {
             line-height: 1.15;
@@ -121,8 +120,7 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         data-tag="font" />
-    <!-- <link rel="stylesheet" href="../static/css/style.css" /> -->
-
+    <link rel="stylesheet" href="../static/css/style.css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/pickmeup.min.js"></script><!-- 日历 -->
     <link rel="stylesheet" type="text/css" href="../static/css/pickmeup.css"><!-- 日历 -->
@@ -141,6 +139,7 @@
 </head>
 
 <body style="background-color: #211f17;">
+    <link rel="stylesheet" href="../static/css/sticky-nav.css">
     <nav class="nav">
         <div class="container">
             <h1 class="logo"><a href="#">Ascenda Loyalty Hotel Booking</a></h1>
@@ -176,6 +175,7 @@
             <div class="tm-main">
                 <p>Booking</p>
             </div>
+
             <div class="tm-booking">
                 <form method="post" action="/user/HotelList">
                     {% csrf_token %}
@@ -198,7 +198,6 @@
                         </div>
                     </div>
                     <div class="vertical-line"> </div>
-
                     <div class="tm-form2">
                         <div class="tm-cl">
                             <label for="hotel_date" class="arrival">Visiting Dates from Arrival to Departure</label>
@@ -210,6 +209,7 @@
                 </form>
             </div>
             <div id="main-section" class="landing-page-main">
+                <link href="../static/css/landing-page.css" rel="stylesheet" />
                 <h1>Most famous places</h1>
                 <span class="landing-page-text16">Recommended</span>
                 <div class="landing-page-cards-container">
@@ -219,14 +219,25 @@
                             <span class="place-card-text"><span>London</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    London is the capital and largest city of England and the United Kingdom, with a
+                                    population of just over 9 million. It stands on the River Thames in south-east
+                                    England at the head of a 50-mile (80 km) estuary down to the North Sea, and has been
+                                    a major settlement for two millennia.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination"
+                                        value="London, England, United Kingdom">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -236,14 +247,24 @@
                             <span class="place-card-text"><span>Rome</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    Rome is the capital city of Italy. It is also the capital of the Lazio region, the
+                                    centre of the Metropolitan City of Rome, and a special comune named Comune di Roma
+                                    Capitale. Rome is the country's most populated comune and the third most populous
+                                    city in the European Union by population within city limits.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination" value="Rome, Italy">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -253,14 +274,26 @@
                             <span class="place-card-text"><span>Singapore</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    Singapore is a unique multi-cultural Asian society, with a strong blend of Chinese,
+                                    Malay and Indian traditions and a distinct British colonial heritage. It’s a small
+                                    country with a population of only 5.5 million You can find great food, vibrant
+                                    nightlife, arts and cultural events and it is easy to get around as English is
+                                    widely spoken.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination"
+                                        value="Singapore, Singapore">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -270,14 +303,24 @@
                             <span class="place-card-text"><span>Paris</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    Paris is known as the “City of Light”. It is also known as the Capital of
+                                    Fashion, which is no surprise when one thinks of all those famous French designers.
+                                    This beautiful and romantic city, in many respects, resembles an outdoor museum with
+                                    its attractive and elegant architecture and wide boulevards.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination" value="Paris, France">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -287,14 +330,24 @@
                             <span class="place-card-text"><span>Shanghai</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    In Shanghai, known as the “Paris of the East,” the cultures from East and West are
+                                    intertwined to create the city’s cosmopolitan style. What was once the ten-mile
+                                    Shanghai International Settlement, established by the British in conjunction with
+                                    Americans and French living along the Huangpu River in present-day Puxi.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination" value="Shanghai, China">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -304,14 +357,24 @@
                             <span class="place-card-text"><span>Tokyo</span></span>
                             <span class="place-card-text1">
                                 <span>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna.
+                                    Tokyo (東京, Tōkyō) is Japan's capital and the world's most populous metropolis. It is
+                                    also one of Japan's 47 prefectures, consisting of 23 central city wards and multiple
+                                    cities, towns and villages west of the city center. The Izu and Ogasawara Islands
+                                    are also part of Tokyo.
                                 </span>
                             </span>
                             <div class="outline-button-container">
-                                <button class="outline-button-button button">
-                                    <span>Discover place</span>
-                                </button>
+                                <form method="post" action="/user/HotelList">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="hotel_name" id="destination" value="Tokyo, Japan">
+                                    <input type="hidden" name="hotel_rooms" id="hotel_rooms" value="1">
+                                    <input type="hidden" name="hotel_guest" id="hotel_guest" value="1">
+                                    <input type="hidden" name="hotel_date" value="14 Aug-22    to   15 Aug-22">
+                                    <input type="hidden" name="number1" value="1">
+                                    <button class="outline-button-button button">
+                                        <span>Discover place</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

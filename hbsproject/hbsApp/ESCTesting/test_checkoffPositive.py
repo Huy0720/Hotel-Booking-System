@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import random
 
 class TestCheckoffPositive():
   def setup_method(self, method=None):
@@ -27,16 +28,16 @@ class TestCheckoffPositive():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
     time.sleep(10)
     self.driver.find_element(By.CSS_SELECTOR, "form:nth-child(3) button").click()
-    time.sleep(1)
+    time.sleep(10)
     self.driver.execute_script("window.scrollBy(0,{})".format(1200))
-    time.sleep(3)
+    time.sleep(1)
     self.driver.find_element(By.CSS_SELECTOR, "form:nth-child(2) span").click()
     self.driver.find_element(By.ID, "salutation").click()
     dropdown = self.driver.find_element(By.ID, "salutation")
@@ -49,11 +50,19 @@ class TestCheckoffPositive():
     self.driver.find_element(By.ID, "email").click()
     self.driver.find_element(By.ID, "email").send_keys("100@gmail.com")
     self.driver.find_element(By.ID, "phone").click()
+    # random input 
+    str = ''
+    phone_number =str.join(random.choice("0123456789") for i in range(8))
+    print('phone_number :',phone_number)
     self.driver.find_element(By.ID, "phone").send_keys("84634785")
     self.driver.find_element(By.ID, "message").click()
     self.driver.find_element(By.ID, "message").send_keys("None")
+    # random input 
+    str = ''
+    card_num=str.join(random.choice("0123456789") for i in range(16))
+    print('card_num :',card_num)
     self.driver.find_element(By.ID, "card_number").click()
-    self.driver.find_element(By.ID, "card_number").send_keys("123456789")
+    self.driver.find_element(By.ID, "card_number").send_keys(card_num)
     self.driver.find_element(By.ID, "card_name").click()
     self.driver.find_element(By.ID, "card_name").send_keys("abc")
     self.driver.find_element(By.ID, "exp_month").click()
@@ -62,7 +71,7 @@ class TestCheckoffPositive():
     self.driver.find_element(By.CSS_SELECTOR, "#exp_month > option:nth-child(2)").click()
     self.driver.find_element(By.ID, "exp_year").click()
     dropdown = self.driver.find_element(By.ID, "exp_year")
-    dropdown.find_element(By.XPATH, "//option[. = '2022']").click()
+    dropdown.find_element(By.XPATH, "//option[. = '2024']").click()
     self.driver.find_element(By.CSS_SELECTOR, "#exp_year > option:nth-child(2)").click()
     self.driver.find_element(By.ID, "CVV").click()
     self.driver.find_element(By.ID, "CVV").send_keys("101")
@@ -78,7 +87,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_checkoffPositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()

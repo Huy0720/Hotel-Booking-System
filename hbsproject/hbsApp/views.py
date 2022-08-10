@@ -92,9 +92,13 @@ def hotelList(request):
     b = dest['hotel_guest']
     c = dest['hotel_date']
     d = dest['hotel_rooms']
-    e = int(dest['number1'])
     x = read_json()
     y = find_des_id(a,x)
+    try:
+        e = int(dest['number1'])
+    except:
+        hotel_l = []
+        return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':1,'hotel_rooms':d,'hotel_name':a ,'number1':1})
     hotel_l = list()
     per_page = 5
     page_num = 0
@@ -103,7 +107,6 @@ def hotelList(request):
         api_1_return = read_json_1(api_1)
         hotel_total = [api_1_return['hotels'][i:i + per_page] for i in range(0, len(api_1_return['hotels']), per_page)]
         page_num = len(hotel_total)
-
         if e>=page_num:
             hotel_l = []
             return render(request,template,{'hotel_list':hotel_l,'book_dest':y,'book_date':c,'num_of_guest':b,'page_num':page_num,'hotel_rooms':d,'hotel_name':a ,'number1':e})
@@ -311,7 +314,7 @@ def concate_url_3(des_id,num_guests,date,hotel_id):
 
 def read_json_1(url):
     load_f=requests.get(url).text
-    time.sleep(2)
+    time.sleep(6.5)
     load_f=requests.get(url).text
     state = json.loads(load_f)
     return state

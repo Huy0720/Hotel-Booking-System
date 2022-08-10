@@ -54,7 +54,7 @@ class TestCheckoffPositive():
     str = ''
     phone_number =str.join(random.choice("0123456789") for i in range(8))
     print('phone_number :',phone_number)
-    self.driver.find_element(By.ID, "phone").send_keys("84634785")
+    self.driver.find_element(By.ID, "phone").send_keys(phone_number)
     self.driver.find_element(By.ID, "message").click()
     self.driver.find_element(By.ID, "message").send_keys("None")
     # random input 

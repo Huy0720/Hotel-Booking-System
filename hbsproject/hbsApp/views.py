@@ -18,7 +18,6 @@ from django.views import generic
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate,login,logout
-
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 import time
@@ -204,6 +203,7 @@ def booking_successful(request):
         col.insert_one(info)
         update_Mongo()
     return render(request, template)
+
 from django.views.decorators.cache import cache_page
 
 @cache_page(15)

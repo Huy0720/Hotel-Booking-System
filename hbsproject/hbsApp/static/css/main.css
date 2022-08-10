@@ -51,7 +51,7 @@
 
 .tm-nav div ul li a:hover {
 
-    color: #ec3c6a;
+    color: lightblue;
 }
 
 .tm-list::after {
@@ -245,7 +245,7 @@
 /* Make reservation */
 
 .tm-res {
-    background: #cc4151;
+    background: lightblue;
     padding: 2%;
 }
 
@@ -267,7 +267,7 @@
 }
 
 .tm-resbutton p:hover {
-    color: #ec3c6a;
+    color: lightblue;
     background: #fff;
 }
 
@@ -299,7 +299,7 @@
 
 .tm-us .bold,
 .tm-address .bold {
-    color: #ec3c6a;
+    color: lightblue;
     font-size: 1.5vw;
     font-weight: 700;
     padding-bottom: 4%;
@@ -488,7 +488,7 @@
 }
 
 .tm-trans div .bold {
-    color: #ff8d9a;
+    color: lightblue;
 
 }
 
@@ -525,7 +525,7 @@
 
 div.vertical-line {
     width: 0.15%;
-    background-color: #ec3d68;
+    background-color: lightblue;
     height: 90%;
     position: absolute;
     top: 6%;
@@ -568,16 +568,16 @@ input::-webkit-input-placeholder {
 input,
 select,
 textarea {
-    color: #ec3d68;
+    color: #248988;
 }
 
 input::-webkit-input-placeholder {
 
-    color: #f17c94;
+    color: #248988;
 }
 
 textarea::-webkit-input-placeholder {
-    color: #f17c94;
+    color: #248988;
 }
 
 

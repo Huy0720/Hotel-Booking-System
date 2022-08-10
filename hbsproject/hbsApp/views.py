@@ -42,6 +42,7 @@ def json_view(request):
         j = json.load(load_f)
     return JsonResponse(j, safe=False)
 
+
 def index(request):
     template = "index.html"  
     return render(request, template)
@@ -78,6 +79,7 @@ def register(request):
         else:
             return redirect('./register')
     return render(request,template)
+
 
 def logout_call(request):
     logout(request)
@@ -118,8 +120,6 @@ def hotelList(request):
 
         else:
             api_1_return['hotels'] = hotel_total[e]
-
-        
         for i in api_1_return['hotels']:
             try:
                 api_2 = concate_url_2(i['id'])
@@ -204,7 +204,9 @@ def booking_successful(request):
         col.insert_one(info)
         update_Mongo()
     return render(request, template)
+from django.views.decorators.cache import cache_page
 
+@cache_page(15)
 def booking_history(request):
     template = "bookHistory.html"
     CONNECTION_STRING = "mongodb+srv://huy:sutd@cluster0.xifad.mongodb.net/?retryWrites=true&w=majority"

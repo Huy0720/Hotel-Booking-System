@@ -17,13 +17,13 @@
 
 
 .btn:disabled, .btn:disabled:hover {
-  background-color: #8a364d;
+  background-color: rgb(118, 201, 229);
   
 }
 
-.btn-primary { background-color: #ea4370; }
+.btn-primary { background-color: lightblue; }
 
-.btn-primary:hover, .btn-primary:focus { background-color: #d3305c; 
+.btn-primary:hover, .btn-primary:focus { background-color: rgb(118, 201, 229); 
 
    outline: 0;
 }

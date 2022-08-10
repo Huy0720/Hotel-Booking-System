@@ -134,7 +134,7 @@
 }
 
 .tm-rooms table tr a p:hover {
-    color: #ec3c6a;
+    color: lightblue;
 
 
 }
@@ -568,16 +568,16 @@ input::-webkit-input-placeholder {
 input,
 select,
 textarea {
-    color: #248988;
+    color: lightblue;
 }
 
 input::-webkit-input-placeholder {
 
-    color: #248988;
+    color: lightblue;
 }
 
 textarea::-webkit-input-placeholder {
-    color: #248988;
+    color: lightblue;
 }
 
 
@@ -677,8 +677,8 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-    color: #ec3d68;
-    border: 1px solid #ec3d68;
+    color: lightblue;
+    border: 1px solid lightblue;
 }
 
 input[type=submit]:focus {

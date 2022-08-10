@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/sticky-nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         * {
             margin: 0;
@@ -56,6 +57,15 @@
             color: rgb(255, 255, 255);
             font-weight: 700;
         }
+        input[type=submit] {
+            font: optional;
+            font-weight: bold;
+            background-color: #bf1515;
+            color: rgb(16, 14, 14);
+            padding: 16px 32px;
+            cursor: pointer;
+            box-sizing: content-box;
+        }
     </style>
 
     <style>
@@ -95,48 +105,48 @@
     </div>
 
     <table>
-        <tr id="table">
+        <tr id="table" >
+            <th>ID</th>
             <th>Hotel Name</th>
             <th>Room Type</th>
             <th>Number of Guest</th>
+            <th>Number of Room</th>
+            <th>Check-in and Check-out Date</th>
             <th>Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Request</th>
+            <th></th>
         </tr>
 
-        {% for data in DataList %}
-        <tr>
-            <td>{{data.Name}}</td>
-            <td>{{data.Type}}</td>
-            <td>{{data.Guests}}</td>
-            <td> {{data.Salutation}} </td>
-            <td> {{data.Email}} </td>
-            <td> {{data.Phone}}</td>
-            <td> {{data.Request}}</td>
-         </tr>
-        {% endfor %}
+        
+            {% for data in DataList %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{data.Name}} 
+                    <br /> Request: {{data.Request}} </td>
+                <td> {{data.Type}} </td>
+                <td> {{data.Guests}}</td>
+                <td> {{data.Rooms}}</td>
+                <td> {{data.Date}}</td>
+                <td> {{data.Salutation}} </td>
+                <td> {{data.Email}} </td>
+                <td> {{data.Phone}} </td>
+                <td>
+                    <form method="post" action="/user/deleteBooking">
+                        <input type="hidden" name="mongoRecord" id="mongoRecord" value="{{forloop.counter}}">
+                        <input type="submit" name = "del" id = "del" value="Delete Booking">
+                    </form>
+                </td>>
+                
+            </tr>
+                
+            {% endfor %}
 
-     
     </table>
 
 </body>
 
 
 
-
-<!-- 
-    {% for hotel in hotel_list %}
-    <div class="box">
-        <img src={{hotel.image_url}}>
-        <p class="describe">Hotel name : {{hotel.name}} <br> Hotel address : {{hotel.address}} <br>Hotel rating :
-            {{hotel.rating}}
-        </p>
-
-    </div>
-    {% endfor %}
-
-
--->
 
 </html>

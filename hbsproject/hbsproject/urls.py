@@ -31,7 +31,8 @@ urlpatterns = [
     path('user/checkout', views.check_out, name="checkout"),
     path('user/bookingsuccessful', views.booking_successful, name="booking_successful"),
     path('user/logout',views.logout_call, name="logout_call"),
-    path("user/destinations_filtered.json", views.json_view)
+    path("user/destinations_filtered.json", views.json_view),
+    path("user/deleteBooking", views.delete_booking)
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

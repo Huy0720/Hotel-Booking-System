@@ -30,9 +30,10 @@ crossorigin="anonymous">
             <form method="post" action="/user/bookingsuccessful">
 
                 <h4 align="right"> Hotel: {{hotel_name}} </h4>
-                <h4 align="right"> Room Type: {{room_type}} </h4>
-                <h4 align="right"> Room Description: {{room_description}} </h4>
+                <h4 align="right"> Room Type: {{room_type}} {{room_description}}</h4>
+                <h4 align="right"> Number of Room: {{num_of_room}}</h4>
                 <h4 align="right"> Number of Guest: {{num_of_guest}} </h4>
+                <h4 align="right"> Date: {{hotel_date}} </h4>
                 <br>
                       
             <h2> Checkout form </h2>
@@ -41,6 +42,8 @@ crossorigin="anonymous">
             <input type="hidden" name="room_type" value="{{room_type}}">
             <input type="hidden" name="room_description" value="{{room_description}}">
             <input type="hidden" name="num_of_guest" value="{{num_of_guest}}">
+            <input type="hidden" name="num_of_room" value="{{num_of_room}}">
+            <input type="hidden" name="hotel_date" value="{{hotel_date}}">
 
             <select class="box" name="salutation" id="salutation" required>
                 <option value="" disabled selected hidden>Title</option>

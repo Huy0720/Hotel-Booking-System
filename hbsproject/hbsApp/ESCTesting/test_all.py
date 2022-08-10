@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import random
 
 class TestDestinationNegative():
   def setup_method(self, method=None):
@@ -27,8 +28,8 @@ class TestDestinationNegative():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("123")
     self.driver.find_element(By.ID, "sub").click()
@@ -53,8 +54,8 @@ class TestDestinationPositive():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
@@ -148,8 +149,8 @@ class TestNextPagePositive():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
@@ -178,8 +179,8 @@ class TestNextPageNegativeLarger():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
@@ -211,8 +212,8 @@ class TestCheckoffPositive():
     self.driver.execute_script("window.scrollBy(0,{})".format(600))
     time.sleep(2)
     self.driver.find_element(By.NAME, "hotel_date").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(7)").click()
-    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(8)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-sunday:nth-child(14)").click()
+    self.driver.find_element(By.CSS_SELECTOR, ".pmu-days > .pmu-button:nth-child(15)").click()
     self.driver.find_element(By.ID, "destination").click()
     self.driver.find_element(By.ID, "destination").send_keys("Singapore, Singapore")
     self.driver.find_element(By.ID, "sub").click()
@@ -262,7 +263,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_destinationNegative()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -272,7 +274,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_destinationPositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -282,7 +285,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_loginNegative()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -292,7 +296,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_loginPositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -302,7 +307,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_registerPositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -312,7 +318,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_nextPagePositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -322,7 +329,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_nextPageNegativeLarger()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()
@@ -332,7 +340,8 @@ if __name__ == '__main__':
     test.setup_method()
     start = time.time()
     test.test_checkoffPositive()
-    print('******************run success time is '+ str(time.time()-start))
+    print('--------------------------------------------')
+    print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
     test.teardown_method()

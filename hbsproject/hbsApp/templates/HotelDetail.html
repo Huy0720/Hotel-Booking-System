@@ -172,7 +172,7 @@
         <li><a href="index">Home</a></li>
         <li><a href="login">Login</a></li>
         <li><a href="register">Register</a></li>
-        <li><a href="#">Book History</a></li>
+        <li><a href="bookHistory">Book History</a></li>
         <li><a href="logout">Logout</a></li>
       </ul>
     </div>
@@ -317,7 +317,10 @@
                 <p class="card-excerpt" id="excerpt">
                   {{i.description}}
                 </p>
-                <br>
+                <p class="card-excerpt" id="excerpt">
+                  Price : {{i.price}}$
+                </p>
+
                 <input type="hidden" name="room_type" value="{{i.price_type}}">
                 <input type="hidden" name="room_description" value="{{i.description}}">
                 <input type="hidden" name="hotel_name" value="{{hotel_detail.name}}">

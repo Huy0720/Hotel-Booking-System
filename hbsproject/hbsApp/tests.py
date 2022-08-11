@@ -74,7 +74,7 @@ class TestURls(SimpleTestCase):
         self.assertEquals(resolve(url).func, index)
     def test_bookHistory_url_is_resolved(self):
         url = reverse('bookHistory')
-        self.assertEquals(resolve(url).func, bookHistory)
+        self.assertEquals(resolve(url).func, booking_history)
     def test_hotelList_url_is_resolved(self):
         url = reverse('hotelList')
         self.assertEquals(resolve(url).func, hotelList)

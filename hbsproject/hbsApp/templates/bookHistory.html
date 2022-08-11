@@ -57,10 +57,11 @@
             color: rgb(255, 255, 255);
             font-weight: 700;
         }
+
         input[type=submit] {
             font: optional;
             font-weight: bold;
-            background-color:lightblue;
+            background-color: lightblue;
             color: rgb(16, 14, 14);
             padding: 16px 32px;
             cursor: pointer;
@@ -70,20 +71,21 @@
 
     <style>
         table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-        color:#dddddd;
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            color: #dddddd;
         }
-        
-        td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
         }
-        
+
         tr:nth-child(even) {
-        background-color: #dddddd;
+            background-color: #353535;
         }
     </style>
 </head>
@@ -106,7 +108,7 @@
     </div>
 
     <table>
-        <tr id="table" >
+        <tr id="table">
             <th>ID</th>
             <th>Hotel Name</th>
             <th>Room Type</th>
@@ -119,29 +121,30 @@
             <th></th>
         </tr>
 
-        
-            {% for data in DataList %}
-            <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{data.Name}} 
-                    <br /> Request: {{data.Request}} </td>
-                <td> {{data.Type}} </td>
-                <td> {{data.Guests}}</td>
-                <td> {{data.Rooms}}</td>
-                <td> {{data.Date}}</td>
-                <td> {{data.Salutation}} </td>
-                <td> {{data.Email}} </td>
-                <td> {{data.Phone}} </td>
-                <td>
-                    <form method="post" action="/user/deleteBooking">
-                        <input type="hidden" name="mongoRecord" id="mongoRecord" value="{{forloop.counter}}">
-                        <input type="submit" name = "del" id = "del" value="Delete Booking">
-                    </form>
-                </td>>
-                
-            </tr>
-                
-            {% endfor %}
+
+        {% for data in DataList %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{data.Name}}
+                <br /> Request: {{data.Request}}
+            </td>
+            <td> {{data.Type}} </td>
+            <td> {{data.Guests}}</td>
+            <td> {{data.Rooms}}</td>
+            <td> {{data.Date}}</td>
+            <td> {{data.Salutation}} </td>
+            <td> {{data.Email}} </td>
+            <td> {{data.Phone}} </td>
+            <td>
+                <form method="post" action="/user/deleteBooking">
+                    <input type="hidden" name="mongoRecord" id="mongoRecord" value="{{forloop.counter}}">
+                    <input type="submit" name="del" id="del" value="Delete Booking">
+                </form>
+            </td>>
+
+        </tr>
+
+        {% endfor %}
 
     </table>
 

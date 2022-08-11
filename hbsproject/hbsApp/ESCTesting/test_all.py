@@ -264,6 +264,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_destinationNegative()
     print('--------------------------------------------')
+    print('TestDestinationNegative')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -275,6 +276,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_destinationPositive()
     print('--------------------------------------------')
+    print('TestDestinationPositive')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -286,6 +288,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_loginNegative()
     print('--------------------------------------------')
+    print('TestLoginNegative')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -297,6 +300,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_loginPositive()
     print('--------------------------------------------')
+    print('TestLoginPositive')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -308,6 +312,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_registerPositive()
     print('--------------------------------------------')
+    print('TestRegisterPositive')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -319,6 +324,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_nextPagePositive()
     print('--------------------------------------------')
+    print('TestNextPagePositive')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -330,6 +336,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_nextPageNegativeLarger()
     print('--------------------------------------------')
+    print('TestNextPageNegativeLarger')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序
@@ -341,6 +348,7 @@ if __name__ == '__main__':
     start = time.time()
     test.test_checkoffPositive()
     print('--------------------------------------------')
+    print('TestCheckoffPositive')
     print('run success time is '+ str(time.time()-start))
     time.sleep(2)
     # 关闭程序

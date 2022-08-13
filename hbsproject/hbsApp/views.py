@@ -1,5 +1,5 @@
 from asyncio.constants import DEBUG_STACK_DEPTH
-from asyncio.windows_events import NULL
+#from asyncio.windows_events import NULL
 import imp
 from re import template
 from tkinter.messagebox import NO
